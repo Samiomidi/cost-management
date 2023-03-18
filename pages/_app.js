@@ -1,73 +1,47 @@
-import { useState, useContext } from "react";
-import Layout from "../components/layout/layout";
-import ThemeSwitch from "../components/ui/ThemeSwitch";
-import ThemeContext from "../store/ThemeContext";
-// Import MUI stuff
-// import "@fontsource/roboto"; // Loading Roboto font. MUI was designed with this font in mind.
-import {
-  Card,
-  CardHeader,
-  Switch,
-  CardContent,
-  Box,
-  Container,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  CssBaseline,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import React from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import "../styles/globals.css";
+import { ColorModeContext, setMode } from "../styles/theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import Topbar from "../components/layout/Topbar";
+import SideMenu from "../components/layout/SideMenu";
+import Loading from "../components/ui/Loading";
+import { ProSidebarProvider } from "react-pro-sidebar";
+import NextNProgress from "nextjs-progressbar";
+import Backdrop from "@mui/material";
+function App({ Component, pageProps }) {
+  const [theme, colorMode] = setMode();
 
-// Define theme settings
-const light = {
-  palette: {
-    mode: "light",
-  },
-};
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      setIsLoading(true);
+    });
+    router.events.on("routeChangeComplete", () => {
+      setIsLoading(false);
+    });
+  });
 
-const dark = {
-  palette: {
-    mode: "dark",
-  },
-};
-
-const App = ({ Component, pageProps }) => {
-  // The light theme is used by default
-  const ctx = useContext(ThemeContext);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  // This function is triggered when the Switch component is toggled
-  const changeTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
-  console.log(ctx.isDarkTheme);
   return (
-    <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
-      <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-
-      {/* <ThemeSwitch label="Dark Theme" /> */}
-      <Container>
-        <div className="App">
-          <Box component="div" p={5}></Box>
-
-          <CardHeader
-            action={
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Switch checked={isDarkTheme} onChange={changeTheme} />
-                  }
-                  label="Dark Theme"
-                />
-              </FormGroup>
-            }
-          />
-        </div>
-      </Container>
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <ProSidebarProvider>
+          <NextNProgress height={3} color="#fff" stopDelayMs={0} />
+          {isLoading && <Loading />}
+          <CssBaseline />
+          <div className="app">
+            <SideMenu />
+            <main className="content">
+              <Topbar />
+              <Component {...pageProps} />
+            </main>
+          </div>
+        </ProSidebarProvider>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
-};
+}
 
 export default App;
