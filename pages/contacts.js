@@ -10,50 +10,53 @@ const Contacts = () => {
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "id", headerName: "ID", flex:0.5},
+    { field: "registrarId", headerName: "Registrar ID", flex:1 },
     {
       field: "name",
       headerName: "Name",
-      flex: 1,
+         flex:"auto",
       cellClassName: "name-column--cell",
+
     },
     {
       field: "age",
       headerName: "Age",
       type: "number",
+      flex:0.5,
       headerAlign: "left",
       align: "left",
+    
     },
     {
       field: "phone",
       headerName: "Phone Number",
-      flex: 1,
+         flex:"auto",
     },
     {
       field: "email",
       headerName: "Email",
-      flex: 1,
+         flex:"auto",
     },
     {
       field: "address",
       headerName: "Address",
-      flex: 1,
+         flex:"auto",
     },
     {
       field: "city",
       headerName: "City",
-      flex: 1,
+         flex:"auto",
     },
     {
       field: "zipCode",
       headerName: "Zip Code",
-      flex: 1,
+         flex:"auto",
     },
   ];
 
   return (
-    <Box m="20px">
+    <Box m="20px" >
       <Header
         title="CONTACTS"
         subtitle="List of Contacts for Future Reference"
@@ -61,6 +64,7 @@ const Contacts = () => {
       <Box
         m="40px 0 0 0"
         height="75vh"
+        
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -94,6 +98,7 @@ const Contacts = () => {
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+      
         />
       </Box>
     </Box>
