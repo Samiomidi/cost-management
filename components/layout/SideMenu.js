@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-
+import React, { useState, useEffect } from "react";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-
 import { tokens } from "../../styles/theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -18,8 +16,8 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "react-responsive";
 
 const Item = ({
   title,
@@ -56,10 +54,15 @@ const Item = ({
 };
 
 function SideMenu() {
+  const isMobile = useMediaQuery({ maxWidth: 600 });
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  console.log(isMobile);
+  useEffect(() => {
+    setIsCollapsed(isMobile);
+  }, [isMobile]);
 
   return (
     <Sidebar
@@ -68,7 +71,10 @@ function SideMenu() {
       width="250px"
       collapsedWidth="70px"
       transitionDuration={700}
-      style={{ border: "none !important" }}
+      style={{
+        border: "none !important",
+        // height: "100vh",
+      }}
     >
       <Menu
         iconShape="square"
@@ -203,13 +209,13 @@ function SideMenu() {
             selected={selected}
             setSelected={setSelected}
           />
-          <Item
+          {/* <Item
             title="Calendar"
             to="/calendar"
             icon={<CalendarTodayOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
-          />
+          /> */}
           <Item
             title="FAQ Page"
             to="/faq"
