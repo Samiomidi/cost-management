@@ -5,7 +5,7 @@ const Home = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>Shopping Cart</title>
+        <title>Cost Management</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="Great shopping cart project" />
       </Head>

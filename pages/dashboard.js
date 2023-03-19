@@ -13,15 +13,17 @@ import BarChart from "../components/BarChart";
 import StatBox from "../components/StatBox";
 import ProgressCircle from "../components/ProgressCircle";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "react-responsive";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
+  const isMobile = useMediaQuery({ maxWidth: 600 });
   return (
     <Box m="20px">
       {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box display="flex" justifyContent="space-between" alignItems="center" >
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
         <Box>
@@ -29,13 +31,15 @@ const Dashboard = () => {
             sx={{
               backgroundColor: colors.blueAccent[700],
               color: colors.gray[100],
-              fontSize: "14px",
+              fontSize: `${isMobile?"9.5px":"14px"}`,
               fontWeight: "bold",
-              padding: "10px 20px",
+              padding: `${isMobile?"5px 10px":"10px 20px"}`,
+              
             }}
+            
           >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download Reports
+            <DownloadOutlinedIcon sx={{ mr: `${isMobile?"0px":"10px"}`}} />
+            {!isMobile&&"Download Reports"}
           </Button>
         </Box>
       </Box>
@@ -43,13 +47,14 @@ const Dashboard = () => {
       {/* GRID & CHARTS */}
       <Box
         display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
+        flexDirection="column"
+        gridTemplateColumns= {isMobile ? "repeat(4, 1fr)":"repeat(12, 1fr)"}
         gridAutoRows="140px"
         gap="20px"
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 3"
+          gridColumn= {isMobile ? "span 2":"span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -68,7 +73,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={isMobile ? "span 2":"span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -87,7 +92,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={isMobile ? "span 2":"span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -106,7 +111,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={isMobile ? "span 2":"span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -126,7 +131,7 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        <Box
+        {!isMobile && <Box
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -177,7 +182,7 @@ const Dashboard = () => {
           >
             <LineChart isDashboard={true} />
           </Box>
-        </Box>
+        </Box>}
         <Box
           gridColumn="span 4"
           gridRow="span 2"

@@ -1,21 +1,22 @@
 import React from "react";
 import { Typography, Box, useTheme } from "@mui/material";
 import { tokens } from "../styles/theme";
-
+import { useMediaQuery } from "react-responsive";
 function Header({ title, subtitle }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const isMobile=useMediaQuery({maxWidth: 600 })
   return (
     <Box mb="30px">
       <Typography
-        variant="h2"
+        variant={isMobile?"h4":"h2"}
         color={colors.gray[100]}
         fontWeight="bold"
         sx={{ mb: "5px" }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" color={colors.greenAccent[400]}>
+      <Typography variant={isMobile?"h6":"h5"} color={colors.greenAccent[400]}>
         {subtitle}
       </Typography>
     </Box>
