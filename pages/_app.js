@@ -9,7 +9,7 @@ import SideMenu from "../components/layout/SideMenu";
 import Loading from "../components/ui/Loading";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import NextNProgress from "nextjs-progressbar";
-import Backdrop from "@mui/material";
+
 function App({ Component, pageProps }) {
   const [theme, colorMode] = setMode();
 

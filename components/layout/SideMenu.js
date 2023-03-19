@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../styles/theme";
@@ -18,7 +18,8 @@ import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "react-responsive";
-
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 const Item = ({
   title,
   to = selected,
@@ -53,19 +54,32 @@ const Item = ({
   );
 };
 
+
 function SideMenu() {
   const isMobile = useMediaQuery({ maxWidth: 600 });
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  console.log(isMobile);
+  const [isShowSidebar, setIsShowSidebar] = useState(true)
+
   useEffect(() => {
     setIsCollapsed(isMobile);
   }, [isMobile]);
 
+  const arrowToggleSidebar = ()=>{
+    if(isShowSidebar){
+  return <KeyboardDoubleArrowLeftIcon onClick={()=>setIsShowSidebar(!isShowSidebar)}/>
+    }else{
+      return <KeyboardDoubleArrowRightIcon onClick={()=>setIsShowSidebar(!isShowSidebar)}/>
+  
+    }
+  
+  }
   return (
-    <Sidebar
+    <Fragment>
+
+   {isShowSidebar && <Sidebar
       defaultCollapsed={isCollapsed}
       backgroundColor={`${colors.primary[400]} !important`}
       width="250px"
@@ -261,7 +275,10 @@ function SideMenu() {
           />
         </Box>
       </Menu>
-    </Sidebar>
+    </Sidebar>}
+    {isCollapsed && arrowToggleSidebar()}
+  
+    </Fragment>
   );
 }
 
