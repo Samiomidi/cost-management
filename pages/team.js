@@ -7,7 +7,6 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../components/Header";
 
-
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -19,7 +18,7 @@ const Team = () => {
       headerName: "Name",
       minWidth: 150,
       cellClassName: "name-column--cell",
-      flex:1,
+      flex: 1,
     },
     {
       field: "age",
@@ -38,7 +37,7 @@ const Team = () => {
       field: "email",
       headerName: "Email",
 
-      flex:1,
+      flex: 1,
       minWidth: 200,
     },
     {

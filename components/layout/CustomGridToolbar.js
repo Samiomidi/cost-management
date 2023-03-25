@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import {
   GridToolbarContainer,
@@ -27,23 +28,29 @@ function CustomGridToolbar() {
       setShowToolbar(false);
     }
   }, [isMobile]);
+
   return (
     <Box
       sx={{
         "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
           color: `${colors.gray[100]} !important`,
         },
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      {isMobile && <ListIcon onClick={toggleToolbar} />}
-      {showToolbar && (
-        <GridToolbarContainer>
-          <GridToolbarColumnsButton />
-          <GridToolbarFilterButton />
-          <GridToolbarDensitySelector />
-          <GridToolbarExport />
-        </GridToolbarContainer>
-      )}
+      <Box>
+        {isMobile && <ListIcon onClick={toggleToolbar} />}
+        {showToolbar && (
+          <GridToolbarContainer>
+            <GridToolbarColumnsButton />
+            <GridToolbarFilterButton />
+            <GridToolbarDensitySelector />
+            <GridToolbarExport />
+          </GridToolbarContainer>
+        )}
+      </Box>
     </Box>
   );
 }

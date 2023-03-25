@@ -12,10 +12,12 @@ import { tokens } from "../../styles/theme";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import ExpenseDate from "./ExpenseDate";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ExpenseItem(props) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const isMobile = useMediaQuery("(max-width:600px)");
   return (
     <Card
       sx={{
@@ -34,7 +36,11 @@ function ExpenseItem(props) {
         alignItems="center"
       >
         <ExpenseDate date={props.date} />
-        <Typography variant="h4" color={colors.gray[100]} fontWeight="bold">
+        <Typography
+          variant={`${isMobile ? "h6" : "h4"}`}
+          color={colors.gray[100]}
+          fontWeight="bold"
+        >
           {props.title}
         </Typography>
       </Box>
@@ -44,7 +50,11 @@ function ExpenseItem(props) {
         gap="20px"
         alignItems="center"
       >
-        <Typography variant="h6" color={colors.gray[100]} fontWeight="bold">
+        <Typography
+          variant={`${isMobile ? "h6" : "h5"}`}
+          color={colors.gray[100]}
+          fontWeight="bold"
+        >
           {props.amount
             .toFixed(2)
             .toString()
