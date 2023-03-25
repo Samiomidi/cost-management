@@ -27,7 +27,7 @@ const userSchema = yup.object().shape({
   address2: yup.string().required("required"),
 });
 function Form() {
-  const isNoneMobile = useMediaQuery("(min-width:600px)");
+  const isNoneMobile = useMediaQuery("(max-width:600px)");
   const handleFormSubmit = (values) => {
     console.log(values);
   };

@@ -1,11 +1,11 @@
 import React from "react";
 import { Typography, Box, useTheme } from "@mui/material";
 import { tokens } from "../styles/theme";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "@mui/material/useMediaQuery";
 function Header({ title, subtitle }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const isMobile=useMediaQuery({maxWidth: 600 })
+  const isMobile = useMediaQuery('(max-width:600px)');
   return (
     <Box mb="30px">
       <Typography

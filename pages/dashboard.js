@@ -11,55 +11,42 @@ import LineChart from "../components/LineChart";
 import GeographyChart from "../components/GeographyChart";
 import BarChart from "../components/BarChart";
 import StatBox from "../components/StatBox";
+import CustomIconButton from "../components/ui/CustomIconButton";
 import ProgressCircle from "../components/ProgressCircle";
 import { useRouter } from "next/router";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
-  const isMobile = useMediaQuery({ maxWidth: 600 });
+  const isMobile = useMediaQuery("(max-width:600px)");
   return (
     <Box m="20px">
       {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" >
+      <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-
-        <Box>
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.gray[100],
-              fontSize: `${isMobile?"9.5px":"14px"}`,
-              fontWeight: "bold",
-              padding: `${isMobile?"5px 10px":"10px 20px"}`,
-              
-            }}
-            
-          >
-            <DownloadOutlinedIcon sx={{ mr: `${isMobile?"0px":"10px"}`}} />
-            {!isMobile&&"Download Reports"}
-          </Button>
-        </Box>
+        <CustomIconButton
+          icon={<DownloadOutlinedIcon />}
+          title={"Download Reports"}
+        />
       </Box>
 
       {/* GRID & CHARTS */}
       <Box
         display="grid"
         flexDirection="column"
-        gridTemplateColumns= {isMobile ? "repeat(4, 1fr)":"repeat(12, 1fr)"}
+        gridTemplateColumns={isMobile ? "repeat(4, 1fr)" : "repeat(12, 1fr)"}
         gridAutoRows="140px"
         gap="20px"
       >
         {/* ROW 1 */}
         <Box
-          gridColumn= {isMobile ? "span 2":"span 3"}
+          gridColumn={isMobile ? "span 2" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
-          
         >
           <StatBox
             title="12,361"
@@ -74,7 +61,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={isMobile ? "span 2":"span 3"}
+          gridColumn={isMobile ? "span 2" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -93,7 +80,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={isMobile ? "span 2":"span 3"}
+          gridColumn={isMobile ? "span 2" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -112,7 +99,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={isMobile ? "span 2":"span 3"}
+          gridColumn={isMobile ? "span 2" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -132,58 +119,60 @@ const Dashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        {!isMobile && <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-        >
+        {!isMobile && (
           <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
+            gridColumn="span 8"
+            gridRow="span 2"
+            backgroundColor={colors.primary[400]}
           >
             <Box
+              mt="25px"
+              p="0 30px"
+              display="flex "
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Box
+                onClick={() => {
+                  router.push("/line");
+                }}
+                sx={{ cursor: "pointer" }}
+              >
+                <Typography
+                  variant="h5"
+                  fontWeight="600"
+                  color={colors.gray[100]}
+                >
+                  Revenue Generated
+                </Typography>
+                <Typography
+                  variant="h3"
+                  fontWeight="bold"
+                  color={colors.greenAccent[500]}
+                >
+                  $59,342.32
+                </Typography>
+              </Box>
+              <Box>
+                <IconButton>
+                  <DownloadOutlinedIcon
+                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  />
+                </IconButton>
+              </Box>
+            </Box>
+            <Box
+              height="250px"
+              m="-20px 0 0 0"
               onClick={() => {
                 router.push("/line");
               }}
               sx={{ cursor: "pointer" }}
             >
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.gray[100]}
-              >
-                Revenue Generated
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.greenAccent[500]}
-              >
-                $59,342.32
-              </Typography>
-            </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
+              <LineChart isDashboard={true} />
             </Box>
           </Box>
-          <Box
-            height="250px"
-            m="-20px 0 0 0"
-            onClick={() => {
-              router.push("/line");
-            }}
-            sx={{ cursor: "pointer" }}
-          >
-            <LineChart isDashboard={true} />
-          </Box>
-        </Box>}
+        )}
         <Box
           gridColumn="span 4"
           gridRow="span 2"

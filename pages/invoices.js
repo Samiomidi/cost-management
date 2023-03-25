@@ -1,9 +1,9 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridLogicOperator } from "@mui/x-data-grid";
 import { tokens } from "../styles/theme";
 import { mockDataInvoices } from "../data/mockData";
 import Header from "../components/Header";
-
+import CustomGridToolbar from "../components/layout/CustomGridToolbar";
 const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -51,6 +51,7 @@ const Invoices = () => {
         m="40px 0 0 0"
         height="75vh"
         sx={{
+         
           "& .MuiDataGrid-root": {
             border: "none",
           },
@@ -76,7 +77,7 @@ const Invoices = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid  checkboxSelection rows={mockDataInvoices} columns={columns}  components={{ Toolbar: CustomGridToolbar }} />
       </Box>
     </Box>
   );

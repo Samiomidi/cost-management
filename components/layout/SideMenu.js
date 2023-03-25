@@ -17,9 +17,11 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import TrendingDownOutlinedIcon from '@mui/icons-material/TrendingDownOutlined';
+import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
 const Item = ({
   title,
   to = selected,
@@ -56,7 +58,7 @@ const Item = ({
 
 
 function SideMenu() {
-  const isMobile = useMediaQuery({ maxWidth: 600 });
+  const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -187,6 +189,20 @@ function SideMenu() {
           >
             Data
           </Typography>
+          <Item
+            title="Expenses"
+            to="/expenses"
+            icon={<TrendingDownOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Incomes"
+            to="/incomes"
+            icon={<TrendingUpOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <Item
             title="Manage Team"
             to="/team"

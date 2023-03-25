@@ -1281,3 +1281,24 @@ export const mockGeographyData = [
     value: 171135,
   },
 ];
+
+export const mockDataExpenses = [
+  {
+    id: 1,
+    title: "Rent",
+    date: new Date(2023, 7, 14),
+    amount: 35,
+    currency: "$",
+    pool: "Personal",
+    user: "Sami Omidi",
+  },
+  {
+    id: 2,
+    title: "Gas",
+    date: new Date(2023, 3, 9),
+    amount: 123000,
+    currency: "ريال",
+    pool: "Personal",
+    user: "Sami Omidi",
+  },
+];

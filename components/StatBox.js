@@ -1,11 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../styles/theme";
 import ProgressCircle from "./ProgressCircle";
-import { useMediaQuery } from "react-responsive";
+import useMediaQuery from "@mui/material/useMediaQuery";
 const StatBox = ({ title, subtitle, icon, progress, increase }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-const isMobile = useMediaQuery({ maxWidth: 600 })
+  const isMobile = useMediaQuery('(max-width:600px)');
   return (
     <Box width="100%" m={isMobile ? "0 10px":"0 30px"} textAlign={isMobile ? "center":undefined }>
       <Box display="flex" justifyContent= {isMobile ? "center":"space-between" }>
