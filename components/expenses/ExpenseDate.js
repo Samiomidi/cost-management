@@ -32,10 +32,10 @@ const ExpenseDate = (props) => {
       >
         {isMobile ? monthMobile : month}
       </Typography>
-      <Typography fontSize={`${isMobile ? "0.4rem" : "0.6rem"}`}>
+      <Typography fontSize={`${isMobile ? "0.5rem" : "0.6rem"}`}>
         {year}
       </Typography>
-      <Typography fontSize={`${isMobile ? "0.4rem" : "0.6rem"}`}>
+      <Typography fontSize={`${isMobile ? "0.5rem" : "0.6rem"}`}>
         {day}
       </Typography>
     </Card>
