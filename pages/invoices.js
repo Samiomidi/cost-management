@@ -8,7 +8,7 @@ const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID", width:70 },
+    { field: "id", headerName: "ID", width: 70 },
     {
       field: "name",
       headerName: "Name",
@@ -51,7 +51,6 @@ const Invoices = () => {
         m="40px 0 0 0"
         height="75vh"
         sx={{
-         
           "& .MuiDataGrid-root": {
             border: "none",
           },
@@ -77,7 +76,12 @@ const Invoices = () => {
           },
         }}
       >
-        <DataGrid  checkboxSelection rows={mockDataInvoices} columns={columns}  components={{ Toolbar: CustomGridToolbar }} />
+        <DataGrid
+          checkboxSelection
+          rows={mockDataInvoices}
+          columns={columns}
+          components={{ Toolbar: CustomGridToolbar }}
+        />
       </Box>
     </Box>
   );

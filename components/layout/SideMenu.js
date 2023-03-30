@@ -18,9 +18,10 @@ import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import TrendingDownOutlinedIcon from "@mui/icons-material/TrendingDownOutlined";
+import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 const Item = ({
   title,
@@ -72,7 +73,7 @@ function SideMenu() {
   const arrowToggleSidebar = () => {
     if (isShowSidebar) {
       return (
-        <KeyboardDoubleArrowLeftIcon
+        <MenuOpenOutlinedIcon
           sx={{
             position: "absolute",
             top: "25px",
