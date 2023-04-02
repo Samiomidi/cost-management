@@ -37,6 +37,15 @@ const Item = ({
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
+
+  useEffect(() => {
+    // console.log(selected);
+    const path = router.pathname.split("/")[1];
+    const selectedPath = path.charAt(0).toUpperCase() + path.slice(1);
+    if (!selected) {
+      setSelected(selectedPath);
+    }
+  }, []);
   return (
     <MenuItem
       disabled={disabled}
@@ -62,7 +71,7 @@ function SideMenu() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState(null);
   const [isShowSidebar, setIsShowSidebar] = useState(true);
 
   useEffect(() => {

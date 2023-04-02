@@ -28,8 +28,8 @@ function App({ Component, pageProps }) {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <ProSidebarProvider>
-          <NextNProgress height={3} color="#fff" stopDelayMs={0} />
-          {isLoading && <Loading />}
+          {/* <NextNProgress height={3} color="#fff" stopDelayMs={0} /> */}
+          {/* {isLoading && <Loading />} */}
           <CssBaseline />
           <div className="app">
             <SideMenu />
