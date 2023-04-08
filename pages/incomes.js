@@ -25,7 +25,7 @@ import ActionMenu from "../components/dataGridTable/ActionMenu";
 import { Delete, Edit, AccountCircle } from "@mui/icons-material";
 import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
 import { useRouter } from "next/router";
-const Incomes = () => {
+const Incomes = ({ isLoading }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
@@ -35,15 +35,11 @@ const Incomes = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const [multiSelected, setMultiSelected] = useState();
 
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     router.events.on("routeChangeComplete", () => {
-      setIsLoading(true);
       setTableData(() => data);
-      setIsLoading(false);
     });
-  }, [tableData, isLoading]);
+  }, [isLoading]);
   const handleCreateNewRow = (values) => {
     tableData.unshift(values);
     setTableData([...tableData]);
@@ -176,107 +172,105 @@ const Incomes = () => {
   return (
     <Box m="20px" overflow="hidden">
       <Header title="INCOMES" subtitle="List of Incomes" />
-      {!isLoading && (
-        <Box m="40px 0 0 0">
-          <MaterialReactTable
-            initialState={{ isLoading: false }}
-            displayColumnDefOptions={{
-              "mrt-row-actions": {
-                header: "",
-                muiTableHeadCellProps: {
-                  align: "center",
-                },
-                size: 40,
+      <Box m="40px 0 0 0">
+        <MaterialReactTable
+          initialState={{ isLoading: false }}
+          displayColumnDefOptions={{
+            "mrt-row-actions": {
+              header: "",
+              muiTableHeadCellProps: {
+                align: "center",
               },
-            }}
-            defaultColumn={{
-              minSize: 60, //allow columns to get smaller than default
-              maxSize: 9001, //allow columns to get larger than default
-            }}
-            columns={columns}
-            data={
-              tableData?.map((data) => {
-                return {
-                  ...data,
-                  date: data.date.toLocaleString("en-US", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  }),
-                };
-              }) ?? []
-            }
-            editingMode="modal" //default
-            enableColumnOrdering
-            enableStickyHeader
-            enableColumnResizing
-            enablePinning
-            enableGrouping
-            enableRowSelection
-            onEditingRowSave={handleSaveRowEdits}
-            onEditingRowCancel={handleCancelRowEdits}
-            enableRowActions
-            positionActionsColumn="first"
-            renderRowActionMenuItems={({ table, closeMenu, row }) => (
-              <ActionMenu
-                table={table}
-                row={row}
-                items={[
-                  {
-                    title: "View Profile",
-                    key: "0",
-                    onClick: () => closeMenu(),
-                    sx: { m: 0 },
-                    icon: <AccountCircle />,
-                  },
-                  {
-                    title: "Edit",
-                    key: "1",
-                    onClick: () => table.setEditingRow(row),
-                    sx: { m: 0 },
-                    icon: <Edit />,
-                  },
-                  {
-                    title: "Remove",
-                    key: "2",
-                    onClick: () => handleDeleteRow(row),
-                    sx: { m: 0 },
-                    icon: <Delete />,
-                  },
-                ]}
-              />
-            )}
-            enableMultiRemove={true}
-            renderTopToolbarCustomActions={({ table }) => {
-              const handleMultiDelete = () => {};
+              size: 40,
+            },
+          }}
+          defaultColumn={{
+            minSize: 60, //allow columns to get smaller than default
+            maxSize: 9001, //allow columns to get larger than default
+          }}
+          columns={columns}
+          data={
+            tableData?.map((data) => {
+              return {
+                ...data,
+                date: data.date.toLocaleString("en-US", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                }),
+              };
+            }) ?? []
+          }
+          editingMode="modal" //default
+          enableColumnOrdering
+          enableStickyHeader
+          enableColumnResizing
+          enablePinning
+          enableGrouping
+          enableRowSelection
+          state={{ isLoading: isLoading }}
+          onEditingRowSave={handleSaveRowEdits}
+          onEditingRowCancel={handleCancelRowEdits}
+          enableRowActions
+          positionActionsColumn="first"
+          renderRowActionMenuItems={({ table, closeMenu, row }) => (
+            <ActionMenu
+              table={table}
+              row={row}
+              items={[
+                {
+                  title: "View Profile",
+                  key: "0",
+                  onClick: () => closeMenu(),
+                  sx: { m: 0 },
+                  icon: <AccountCircle />,
+                },
+                {
+                  title: "Edit",
+                  key: "1",
+                  onClick: () => table.setEditingRow(row),
+                  sx: { m: 0 },
+                  icon: <Edit />,
+                },
+                {
+                  title: "Remove",
+                  key: "2",
+                  onClick: () => handleDeleteRow(row),
+                  sx: { m: 0 },
+                  icon: <Delete />,
+                },
+              ]}
+            />
+          )}
+          enableMultiRemove={true}
+          renderTopToolbarCustomActions={({ table }) => {
+            const handleMultiDelete = () => {};
 
-              return (
-                <div style={{ display: "flex", gap: "1rem" }}>
-                  <Button
-                    color="secondary"
-                    onClick={() => setCreateModalOpen(true)}
-                    variant="contained"
-                  >
-                    Create New Account
-                  </Button>
-                  <Button
-                    color="error"
-                    disabled={
-                      !table.getIsSomeRowsSelected() &&
-                      !table.getIsAllRowsSelected()
-                    }
-                    onClick={handleMultiDelete}
-                    variant="contained"
-                  >
-                    Remove
-                  </Button>
-                </div>
-              );
-            }}
-          />
-        </Box>
-      )}
-
+            return (
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <Button
+                  color="secondary"
+                  onClick={() => setCreateModalOpen(true)}
+                  variant="contained"
+                >
+                  Create New Account
+                </Button>
+                <Button
+                  color="error"
+                  disabled={
+                    !table.getIsSomeRowsSelected() &&
+                    !table.getIsAllRowsSelected()
+                  }
+                  onClick={handleMultiDelete}
+                  variant="contained"
+                >
+                  Remove
+                </Button>
+              </div>
+            );
+          }}
+        />
+      </Box>
       <CreateNewAccountModal
         columns={columns}
         open={createModalOpen}

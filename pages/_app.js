@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
@@ -9,16 +9,17 @@ import SideMenu from "../components/layout/SideMenu";
 import Loading from "../components/ui/Loading";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import NextNProgress from "nextjs-progressbar";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 function App({ Component, pageProps }) {
   const [theme, colorMode] = setMode();
 
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    router.events.on("routeChangeStart", () => {
-      setIsLoading(true);
-    });
+    // router.events.on("routeChangeStart", () => {
+    //   setIsLoading(true);
+    // });
     router.events.on("routeChangeComplete", () => {
       setIsLoading(false);
     });
@@ -35,7 +36,7 @@ function App({ Component, pageProps }) {
             <SideMenu />
             <main className="content">
               <Topbar />
-              <Component {...pageProps} />
+              <Component {...pageProps} isLoading={isLoading} />
             </main>
           </div>
         </ProSidebarProvider>

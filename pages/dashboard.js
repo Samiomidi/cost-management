@@ -16,21 +16,15 @@ import CustomIconButton from "../components/ui/CustomIconButton";
 import ProgressCircle from "../components/ProgressCircle";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const Dashboard = () => {
+const Dashboard = ({ isLoading }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:600px)");
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    router.events.on("routeChangeComplete", () => {
-      // setIsLoading(true);
-
-      setIsLoading(false);
-    });
-  }, [isLoading]);
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -42,17 +36,7 @@ const Dashboard = () => {
         />
       </Box>
       {isLoading ? (
-        <Box
-          display="flex"
-          width="100%"
-          justifyContent="center"
-          alignItems="center"
-          height="100vh"
-        >
-          <Typography variant="h5" color={colors.primary[200]}>
-            Dashboard is Loading ...
-          </Typography>
-        </Box>
+        <Skeleton />
       ) : (
         <Box
           display="grid"
