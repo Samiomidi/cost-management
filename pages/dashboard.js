@@ -1,43 +1,114 @@
 import { useState, useEffect } from "react";
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Typography,
+  useTheme,
+  Tooltip,
+} from "@mui/material";
 import { tokens } from "../styles/theme";
-import { mockTransactions } from "../data/mockData";
+import { mockTransactions, mockDataStatBox } from "../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../components/Header";
 import LineChart from "../components/LineChart";
 import GeographyChart from "../components/GeographyChart";
 import BarChart from "../components/BarChart";
-import StatBox from "../components/StatBox";
 import CustomIconButton from "../components/ui/CustomIconButton";
 import ProgressCircle from "../components/ProgressCircle";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-
+import StatBoxes from "../components/statBox/StatBoxes";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import Select from "@mui/material/Select";
+import FormHelperText from "@mui/material/FormHelperText";
+import Checkbox from "@mui/material/Checkbox";
 const Dashboard = ({ isLoading }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:600px)");
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
+  const names = ["Personal", "Villa", "Work", "Tehran", "Tabriz"];
+
+  const [project, setProject] = useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setProject(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
   return (
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+
         <CustomIconButton
           icon={<DownloadOutlinedIcon />}
           title={"Download Reports"}
         />
       </Box>
-      {isLoading ? (
-        <Skeleton />
-      ) : (
+      <Box display="flex" flexDirection="column" gap="20px">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          sx={{
+            "& .css-75gcxd-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+              color: `${colors.primary[100]}`,
+            },
+          }}
+        >
+          <Tooltip title="Project Balance" placement="right-start" arrow>
+            <Typography
+              variant={isMobile ? "h3" : "h1"}
+              color={colors.greenAccent[600]}
+              fontWeight="bold"
+              sx={{ mb: "5px" }}
+            >
+              2520 $
+            </Typography>
+          </Tooltip>
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-checkbox-label">Project</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={project}
+              onChange={handleChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={project.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Define Project in Projects Tab.</FormHelperText>
+          </FormControl>
+        </Box>
         <Box
           display="grid"
           flexDirection="column"
@@ -45,84 +116,7 @@ const Dashboard = ({ isLoading }) => {
           gridAutoRows="140px"
           gap="20px"
         >
-          {/* ROW 1 */}
-          <Box
-            gridColumn={isMobile ? "span 2" : "span 3"}
-            backgroundColor={colors.primary[400]}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <StatBox
-              title="12,361"
-              subtitle="Emails Sent"
-              progress="0.75"
-              increase="+14%"
-              icon={
-                <EmailIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            />
-          </Box>
-          <Box
-            gridColumn={isMobile ? "span 2" : "span 3"}
-            backgroundColor={colors.primary[400]}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <StatBox
-              title="431,225"
-              subtitle="Sales Obtained"
-              progress="0.50"
-              increase="+21%"
-              icon={
-                <PointOfSaleIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            />
-          </Box>
-          <Box
-            gridColumn={isMobile ? "span 2" : "span 3"}
-            backgroundColor={colors.primary[400]}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <StatBox
-              title="32,441"
-              subtitle="New Clients"
-              progress="0.30"
-              increase="+5%"
-              icon={
-                <PersonAddIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            />
-          </Box>
-          <Box
-            gridColumn={isMobile ? "span 2" : "span 3"}
-            backgroundColor={colors.primary[400]}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <StatBox
-              title="1,325,134"
-              subtitle="Traffic Received"
-              progress="0.80"
-              increase="+43%"
-              icon={
-                <TrafficIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            />
-          </Box>
-
+          <StatBoxes data={mockDataStatBox} />
           {/* ROW 2 */}
           {!isMobile && (
             <Box
@@ -223,7 +217,11 @@ const Dashboard = ({ isLoading }) => {
                 </Box>
                 <Box color={colors.gray[100]}>{transaction.date}</Box>
                 <Box
-                  backgroundColor={colors.greenAccent[500]}
+                  backgroundColor={
+                    transaction.cost >= 0
+                      ? colors.greenAccent[500]
+                      : colors.redAccent[500]
+                  }
                   p="5px 10px"
                   borderRadius="4px"
                 >
@@ -304,7 +302,7 @@ const Dashboard = ({ isLoading }) => {
             </Box>
           </Box>
         </Box>
-      )}
+      </Box>
     </Box>
   );
 };

@@ -1,5 +1,50 @@
 import { tokens } from "../styles/theme";
 
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import AddShoppingCartSharpIcon from "@mui/icons-material/AddShoppingCartSharp";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+
+export const mockDataStatBox = [
+  {
+    title: "12,361",
+    subtitle: "Income",
+    progress: "0.75",
+    increase: "+14%",
+    icon: <MonetizationOnIcon sx={{ fontSize: "26px" }} />,
+    desc: "",
+  },
+  {
+    title: "431,225",
+    subtitle: "Expenses",
+    progress: "0.50",
+    increase: "+21%",
+    icon: <AddShoppingCartSharpIcon sx={{ fontSize: "26px" }} />,
+    desc: "",
+  },
+  {
+    title: "32,441",
+    subtitle: "AR",
+    progress: "0.30",
+    increase: "+5%",
+    icon: (
+      <AccountBalanceIcon
+        sx={{ fontSize: "26px" }}
+        // sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+      />
+    ),
+    desc: "Accounts receivable (AR) are funds the company expects to receive from customers and partners. AR is listed as a current asset on the balance sheet.",
+  },
+  {
+    title: "1,325,134",
+    subtitle: "AP",
+    progress: "0.80",
+    increase: "+43%",
+    icon: <CreditCardIcon sx={{ fontSize: "26px" }} />,
+    desc: "A company’s accounts payable (AP) ledger lists its short-term liabilities — obligations for items purchased from suppliers, for example, and money owed to creditors.",
+  },
+];
+
 export const mockDataTeam = [
   {
     id: 1,
@@ -277,7 +322,7 @@ export const mockTransactions = [
     txId: "0315dsaa",
     user: "jackdower",
     date: "2022-04-01",
-    cost: "133.45",
+    cost: "-133.45",
   },
   {
     txId: "01e4dsa",
@@ -295,7 +340,7 @@ export const mockTransactions = [
     txId: "0a123sb",
     user: "stevebower",
     date: "2022-11-02",
-    cost: "13.55",
+    cost: "-13.55",
   },
   {
     txId: "01e4dsa",

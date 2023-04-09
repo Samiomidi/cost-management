@@ -1,24 +1,6 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  MenuItem,
-  Stack,
-  TextField,
-  useTheme,
-} from "@mui/material";
-import { tokens } from "../styles/theme";
+import { Box, Button, MenuItem } from "@mui/material";
 import { data, states } from "../data/makeData";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
@@ -26,20 +8,13 @@ import { Delete, Edit, AccountCircle } from "@mui/icons-material";
 import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
 import { useRouter } from "next/router";
 const Incomes = ({ isLoading }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const router = useRouter();
-
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
-  const [multiSelected, setMultiSelected] = useState();
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", () => {
-      setTableData(() => data);
-    });
-  }, [isLoading]);
+    setTableData(() => data);
+  }, []);
   const handleCreateNewRow = (values) => {
     tableData.unshift(values);
     setTableData([...tableData]);
@@ -190,16 +165,18 @@ const Incomes = ({ isLoading }) => {
           }}
           columns={columns}
           data={
-            tableData?.map((data) => {
-              return {
-                ...data,
-                date: data.date.toLocaleString("en-US", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                }),
-              };
-            }) ?? []
+            tableData
+              ? tableData.map((data) => {
+                  return {
+                    ...data,
+                    date: data.date.toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    }),
+                  };
+                })
+              : []
           }
           editingMode="modal" //default
           enableColumnOrdering
@@ -280,59 +257,6 @@ const Incomes = ({ isLoading }) => {
     </Box>
   );
 };
-
-// //example of creating a mui dialog modal for creating new rows
-// export const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
-//   const [values, setValues] = useState(() =>
-//     columns.reduce((acc, column) => {
-//       acc[column.accessorKey ?? ""] = "";
-//       return acc;
-//     }, {})
-//   );
-//   const theme = useTheme();
-//   const colors = tokens(theme.palette.mode);
-//   const handleSubmit = () => {
-//     //put your validation logic here
-//     onSubmit(values);
-//     onClose();
-//   };
-
-//   return (
-//     <Dialog open={open} onClose={onClose}>
-//       <DialogTitle textAlign="center">Create New Account</DialogTitle>
-//       <DialogContent>
-//         <form onSubmit={(e) => e.preventDefault()}>
-//           <Stack
-//             sx={{
-//               width: "100%",
-//               minWidth: { xs: "300px", sm: "360px", md: "400px" },
-//               gap: "1.5rem",
-//             }}
-//           >
-//             {columns.map((column) => (
-//               <TextField
-//                 key={column.accessorKey}
-//                 label={column.header}
-//                 name={column.accessorKey}
-//                 onChange={(e) =>
-//                   setValues({ ...values, [e.target.name]: e.target.value })
-//                 }
-//               />
-//             ))}
-//           </Stack>
-//         </form>
-//       </DialogContent>
-//       <DialogActions sx={{ p: "1.25rem" }}>
-//         <Button sx={{ color: `${colors.primary[100]}` }} onClick={onClose}>
-//           Cancel
-//         </Button>
-//         <Button color="secondary" onClick={handleSubmit} variant="contained">
-//           Create New Account
-//         </Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
 
 const validateRequired = (value) => !!value.length;
 const validateEmail = (email) =>

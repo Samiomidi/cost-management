@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Box, IconButton, useTheme, Badge } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { ColorModeContext, tokens } from "../../styles/theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
@@ -37,7 +37,9 @@ function Topbar() {
           )}
         </IconButton>
         <IconButton>
-          <NotificationsOutlinedIcon />
+          <Badge badgeContent={4} color="secondary">
+            <NotificationsOutlinedIcon />
+          </Badge>
         </IconButton>
         <IconButton>
           <SettingsOutlinedIcon />
