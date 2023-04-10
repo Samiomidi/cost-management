@@ -125,6 +125,7 @@ const Dashboard = ({ isLoading }) => {
               gridColumn="span 8"
               gridRow="span 2"
               backgroundColor={colors.primary[400]}
+              borderRadius="5px"
             >
               <Box
                 mt="25px"
@@ -179,6 +180,7 @@ const Dashboard = ({ isLoading }) => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             overflow="auto"
+            borderRadius="5px"
           >
             <Box
               display="flex"
@@ -239,6 +241,7 @@ const Dashboard = ({ isLoading }) => {
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             p="30px"
+            borderRadius="5px"
           >
             <Typography variant="h5" fontWeight="600">
               Campaign
@@ -249,7 +252,17 @@ const Dashboard = ({ isLoading }) => {
               alignItems="center"
               mt="25px"
             >
-              <ProgressCircle size="125" />
+              <ProgressCircle
+                selectedValue={65}
+                maxValue={100}
+                textColor={colors.gray[100]}
+                activeStrokeColor={colors.secondary[500]}
+                withGradient
+                backgroundColor={colors.primary[400]}
+                strokeWidth={5}
+                radius={60}
+                valueFontSize={20}
+              />
               <Typography
                 variant="h5"
                 color={colors.secondary[500]}
@@ -270,6 +283,7 @@ const Dashboard = ({ isLoading }) => {
               router.push("/bar");
             }}
             sx={{ cursor: "pointer" }}
+            borderRadius="5px"
           >
             <Typography
               variant="h5"
@@ -291,6 +305,7 @@ const Dashboard = ({ isLoading }) => {
               router.push("/geography");
             }}
             sx={{ cursor: "pointer" }}
+            borderRadius="5px"
           >
             <Typography
               variant="h5"

@@ -19,6 +19,8 @@ function StatBoxes({ data }) {
         change={stat.change}
         icon={stat.icon}
         desc={stat.desc}
+        iconBg={stat.iconBg}
+        iconShadow={stat.iconShadow}
       />
     );
   });

@@ -4,7 +4,16 @@ import ProgressCircle from "../ProgressCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Fragment } from "react";
 
-const StatBox = ({ title, subtitle, icon, progress, change, desc }) => {
+const StatBox = ({
+  title,
+  subtitle,
+  icon,
+  progress,
+  change,
+  desc,
+  iconBg,
+  iconShadow,
+}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -17,32 +26,30 @@ const StatBox = ({ title, subtitle, icon, progress, change, desc }) => {
       justifyContent="space-between"
       gridColumn={isMobile ? "span 2" : "span 3"}
       backgroundColor={colors.primary[400]}
+      position="relative"
+      borderRadius="5px"
     >
+      <Box
+        position="absolute"
+        width="75px"
+        height="75px"
+        boxShadow={iconShadow}
+        borderRadius="5px"
+        left="10px"
+        top="-20px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ background: iconBg }}
+      >
+        {icon}
+      </Box>
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="space-between"
-        alignItems="flex-start"
+        justifyContent="flex-end"
+        alignItems="flex-end"
       >
-        <Typography
-          variant={isMobile ? "h6" : "h5"}
-          sx={{ color: colors.secondary[500] }}
-        >
-          {icon}
-        </Typography>
-        <Tooltip
-          title={desc}
-          TransitionComponent={Fade}
-          TransitionProps={{ timeout: 600 }}
-          followCursor
-        >
-          <Typography
-            variant={isMobile ? "h5" : "h4"}
-            sx={{ color: colors.secondary[500] }}
-          >
-            {subtitle}
-          </Typography>
-        </Tooltip>
         <Typography
           variant={isMobile ? "h6" : "h5"}
           fontWeight="bold"
@@ -56,16 +63,28 @@ const StatBox = ({ title, subtitle, icon, progress, change, desc }) => {
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="space-between"
-        alignItems="center"
+        justifyContent="flex-start"
+        alignItems="flex-end"
       >
+        <Tooltip
+          title={desc}
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 600 }}
+          followCursor
+        >
+          <Typography variant="subtitle2" sx={{ color: colors.gray[400] }}>
+            {subtitle}
+          </Typography>
+        </Tooltip>
         <Typography
           variant={isMobile ? "h5" : "h4"}
           fontWeight="bold"
           sx={{ color: colors.gray[100] }}
+          mb="15px"
         >
           {title}
         </Typography>
+
         <ProgressCircle
           selectedValue={progress * 100}
           maxValue={100}
