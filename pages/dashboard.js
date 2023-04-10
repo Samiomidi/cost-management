@@ -72,7 +72,9 @@ const Dashboard = ({ isLoading }) => {
       <Box display="flex" flexDirection="column" gap="20px">
         <Box
           display="flex"
+          flexDirection={isMobile ? "column" : "row"}
           justifyContent="space-between"
+          alignItems="center"
           sx={{
             "& .css-75gcxd-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
               color: `${colors.primary[100]}`,
@@ -81,7 +83,7 @@ const Dashboard = ({ isLoading }) => {
         >
           <Tooltip title="Project Balance" placement="right-start" arrow>
             <Typography
-              variant={isMobile ? "h3" : "h1"}
+              variant={isMobile ? "h2" : "h1"}
               color={colors.secondary[600]}
               fontWeight="bold"
               sx={{ mb: "5px" }}
@@ -89,7 +91,7 @@ const Dashboard = ({ isLoading }) => {
               2520 $
             </Typography>
           </Tooltip>
-          <FormControl sx={{ m: 1, width: 300 }}>
+          <FormControl sx={{ m: 1, width: 300, flex: 1 }}>
             <InputLabel id="demo-multiple-checkbox-label">Project</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"
