@@ -17,7 +17,7 @@ function StatBoxes({ data }) {
         subtitle={stat.subtitle}
         progress={stat.progress}
         change={stat.change}
-        icon={stat.icon}
+        icon={isMobile ? stat.icon("18px") : stat.icon("40px")}
         desc={stat.desc}
         iconBg={stat.iconBg}
         iconShadow={stat.iconShadow}

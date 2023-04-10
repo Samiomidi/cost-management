@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Tooltip, Fade } from "@mui/material";
+import { Box, Typography, useTheme, Tooltip, Fade, Icon } from "@mui/material";
 import { tokens } from "../../styles/theme";
 import ProgressCircle from "../ProgressCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -17,6 +17,7 @@ const StatBox = ({
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isMobile = useMediaQuery("(max-width:600px)");
+
   return (
     <Box
       p="20px"
@@ -31,12 +32,12 @@ const StatBox = ({
     >
       <Box
         position="absolute"
-        width="75px"
-        height="75px"
+        width={isMobile ? "35px" : "75px"}
+        height={isMobile ? "35px" : "75px"}
         boxShadow={iconShadow}
         borderRadius="5px"
         left="10px"
-        top="-20px"
+        top={isMobile ? "-10px" : "-20px"}
         display="flex"
         justifyContent="center"
         alignItems="center"

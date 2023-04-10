@@ -11,7 +11,8 @@ export const mockDataStatBox = [
     subtitle: "Income",
     progress: "0.75",
     change: "+14",
-    icon: <MonetizationOnIcon sx={{ fontSize: "50px" }} />,
+    icon: (iconSize) => <MonetizationOnIcon sx={{ fontSize: iconSize }} />,
+    iconSize: "",
     desc: "",
     iconBg: "linear-gradient(60deg, #ffa726, #fb8c00)",
     iconShadow:
@@ -22,7 +23,9 @@ export const mockDataStatBox = [
     subtitle: "Expenses",
     progress: "0.50",
     change: "+21",
-    icon: <AddShoppingCartSharpIcon sx={{ fontSize: "50px" }} />,
+    icon: (iconSize) => (
+      <AddShoppingCartSharpIcon sx={{ fontSize: iconSize }} />
+    ),
     desc: "",
     iconBg: "linear-gradient(60deg, #66bb6a, #43a047)",
     iconShadow:
@@ -33,12 +36,7 @@ export const mockDataStatBox = [
     subtitle: "AR",
     progress: "0.30",
     change: "-5",
-    icon: (
-      <AccountBalanceIcon
-        sx={{ fontSize: "50px" }}
-        // sx={{ color: colors.secondary[600], fontSize: "26px" }}
-      />
-    ),
+    icon: (iconSize) => <AccountBalanceIcon sx={{ fontSize: iconSize }} />,
     desc: "Accounts receivable (AR) are funds the company expects to receive from customers and partners. AR is listed as a current asset on the balance sheet.",
     iconBg: "linear-gradient(60deg, #ef5350, #e53935)",
     iconShadow:
@@ -49,7 +47,7 @@ export const mockDataStatBox = [
     subtitle: "AP",
     progress: "0.80",
     change: "+43",
-    icon: <CreditCardIcon sx={{ fontSize: "50px" }} />,
+    icon: (iconSize) => <CreditCardIcon sx={{ fontSize: iconSize }} />,
     desc: "A company’s accounts payable (AP) ledger lists its short-term liabilities — obligations for items purchased from suppliers, for example, and money owed to creditors.",
     iconBg: "linear-gradient(60deg, #26c6da, #00acc1)",
     iconShadow:
