@@ -6,21 +6,19 @@ import Header from "../components/Header";
 import { useTheme } from "@mui/material";
 import CustomGridToolbar from "../components/layout/CustomGridToolbar";
 
-
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 70},
+    { field: "id", headerName: "ID", width: 70 },
     { field: "registrarId", headerName: "Registrar ID", minWidth: 100 },
     {
       field: "name",
       headerName: "Name",
-      flex:1,
+      flex: 1,
       cellClassName: "name-column--cell",
       minWidth: 150,
-
     },
     {
       field: "age",
@@ -29,7 +27,6 @@ const Contacts = () => {
       width: 70,
       headerAlign: "left",
       align: "left",
-    
     },
     {
       field: "phone",
@@ -39,14 +36,13 @@ const Contacts = () => {
     {
       field: "email",
       headerName: "Email",
-      flex:1,
+      flex: 1,
       minWidth: 200,
     },
     {
       field: "address",
       headerName: "Address",
       minWidth: 250,
-      
     },
     {
       field: "city",
@@ -61,7 +57,7 @@ const Contacts = () => {
   ];
 
   return (
-    <Box m="20px" >
+    <Box m="20px">
       <Header
         title="CONTACTS"
         subtitle="List of Contacts for Future Reference"
@@ -77,10 +73,10 @@ const Contacts = () => {
             borderBottom: "none",
           },
           "& .name-column--cell": {
-            color: colors.greenAccent[300],
+            color: colors.secondary[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: colors.calm[700],
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -88,20 +84,17 @@ const Contacts = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: colors.calm[700],
           },
           "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
+            color: `${colors.secondary[200]} !important`,
           },
-          
         }}
       >
         <DataGrid
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: CustomGridToolbar }}
-          
-      
         />
       </Box>
     </Box>

@@ -2,52 +2,34 @@ import { Box, Typography, useTheme, Tooltip, Fade } from "@mui/material";
 import { tokens } from "../../styles/theme";
 import ProgressCircle from "../ProgressCircle";
 import useMediaQuery from "@mui/material/useMediaQuery";
-const StatBox = ({ title, subtitle, icon, progress, increase, desc }) => {
+import { Fragment } from "react";
+
+const StatBox = ({ title, subtitle, icon, progress, change, desc }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isMobile = useMediaQuery("(max-width:600px)");
   return (
     <Box
-      width="100%"
-      m={isMobile ? "0 10px" : "0 30px"}
+      p="20px"
       textAlign={isMobile ? "center" : undefined}
+      width="100%"
+      display="flex"
+      justifyContent="space-between"
+      gridColumn={isMobile ? "span 2" : "span 3"}
+      backgroundColor={colors.primary[400]}
     >
       <Box
         display="flex"
-        justifyContent={isMobile ? "center" : "space-between"}
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="flex-start"
       >
-        <Box>
+        <Typography
+          variant={isMobile ? "h6" : "h5"}
+          sx={{ color: colors.secondary[500] }}
+        >
           {icon}
-
-          <Typography
-            variant={isMobile ? "h5" : "h4"}
-            fontWeight="bold"
-            sx={{ color: colors.gray[100] }}
-          >
-            {title}
-          </Typography>
-        </Box>
-        {!isMobile && (
-          <Box>
-            <ProgressCircle
-              selectedValue={progress * 100}
-              maxValue={100}
-              textColor={colors.gray[100]}
-              activeStrokeColor={colors.greenAccent[500]}
-              withGradient
-              backgroundColor={colors.primary[400]}
-              strokeWidth={3}
-              radius={20}
-              valueFontSize={12}
-            />
-          </Box>
-        )}
-      </Box>
-      <Box
-        display="flex"
-        justifyContent={isMobile ? "center" : "space-between"}
-        mt="2px"
-      >
+        </Typography>
         <Tooltip
           title={desc}
           TransitionComponent={Fade}
@@ -55,19 +37,46 @@ const StatBox = ({ title, subtitle, icon, progress, increase, desc }) => {
           followCursor
         >
           <Typography
-            variant={isMobile ? "h6" : "h5"}
-            sx={{ color: colors.greenAccent[500] }}
+            variant={isMobile ? "h5" : "h4"}
+            sx={{ color: colors.secondary[500] }}
           >
             {subtitle}
           </Typography>
         </Tooltip>
         <Typography
-          variant="h5"
-          fontStyle="italic"
-          sx={{ color: colors.greenAccent[600] }}
+          variant={isMobile ? "h6" : "h5"}
+          fontWeight="bold"
+          sx={{
+            color: change >= 0 ? colors.secondary[600] : colors.danger[600],
+          }}
         >
-          {isMobile ? "" : increase}
+          {`${change} %`}
         </Typography>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography
+          variant={isMobile ? "h5" : "h4"}
+          fontWeight="bold"
+          sx={{ color: colors.gray[100] }}
+        >
+          {title}
+        </Typography>
+        <ProgressCircle
+          selectedValue={progress * 100}
+          maxValue={100}
+          textColor={colors.gray[100]}
+          activeStrokeColor={colors.secondary[500]}
+          withGradient
+          backgroundColor={colors.primary[400]}
+          strokeWidth={3}
+          radius={20}
+          valueFontSize={12}
+        />
       </Box>
     </Box>
   );

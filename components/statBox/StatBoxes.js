@@ -11,23 +11,15 @@ function StatBoxes({ data }) {
 
   return data.map((stat) => {
     return (
-      <Box
-        gridColumn={isMobile ? "span 2" : "span 3"}
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <StatBox
-          key={stat.title}
-          title={stat.title}
-          subtitle={stat.subtitle}
-          progress={stat.progress}
-          increase={stat.increase}
-          icon={stat.icon}
-          desc={stat.desc}
-        />
-      </Box>
+      <StatBox
+        key={stat.title}
+        title={stat.title}
+        subtitle={stat.subtitle}
+        progress={stat.progress}
+        change={stat.change}
+        icon={stat.icon}
+        desc={stat.desc}
+      />
     );
   });
 }

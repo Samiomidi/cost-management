@@ -12,7 +12,7 @@ function CustomIconButton(props) {
     <Box>
       <Button
         sx={{
-          backgroundColor: colors.blueAccent[700],
+          backgroundColor: colors.calm[700],
           color: colors.gray[100],
           fontSize: `${isMobile ? "9.5px" : "14px"}`,
           fontWeight: "bold",

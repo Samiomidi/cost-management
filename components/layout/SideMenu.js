@@ -132,7 +132,7 @@ function SideMenu() {
                   color:
                     theme.palette.mode === "dark"
                       ? "#6870fa !important"
-                      : `${colors.blueAccent[400]} !important`,
+                      : `${colors.calm[400]} !important`,
                   backgroundColor: "transparent !important",
                 },
               },
@@ -140,7 +140,7 @@ function SideMenu() {
                 color:
                   theme.palette.mode === "dark"
                     ? "#6870fa !important"
-                    : `${colors.blueAccent[400]} !important`,
+                    : `${colors.calm[400]} !important`,
                 backgroundColor: "transparent !important",
               },
             }}
@@ -195,7 +195,7 @@ function SideMenu() {
                     variant="h5"
                     color={
                       theme.palette.mode === "dark"
-                        ? colors.greenAccent[500]
+                        ? colors.secondary[500]
                         : "#6870fa"
                     }
                   >

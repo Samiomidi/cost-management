@@ -10,7 +10,7 @@ export const mockDataStatBox = [
     title: "12,361",
     subtitle: "Income",
     progress: "0.75",
-    increase: "+14%",
+    change: "+14",
     icon: <MonetizationOnIcon sx={{ fontSize: "26px" }} />,
     desc: "",
   },
@@ -18,7 +18,7 @@ export const mockDataStatBox = [
     title: "431,225",
     subtitle: "Expenses",
     progress: "0.50",
-    increase: "+21%",
+    change: "+21",
     icon: <AddShoppingCartSharpIcon sx={{ fontSize: "26px" }} />,
     desc: "",
   },
@@ -26,11 +26,11 @@ export const mockDataStatBox = [
     title: "32,441",
     subtitle: "AR",
     progress: "0.30",
-    increase: "+5%",
+    change: "-5",
     icon: (
       <AccountBalanceIcon
         sx={{ fontSize: "26px" }}
-        // sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+        // sx={{ color: colors.secondary[600], fontSize: "26px" }}
       />
     ),
     desc: "Accounts receivable (AR) are funds the company expects to receive from customers and partners. AR is listed as a current asset on the balance sheet.",
@@ -39,7 +39,7 @@ export const mockDataStatBox = [
     title: "1,325,134",
     subtitle: "AP",
     progress: "0.80",
-    increase: "+43%",
+    change: "+43",
     icon: <CreditCardIcon sx={{ fontSize: "26px" }} />,
     desc: "A company’s accounts payable (AP) ledger lists its short-term liabilities — obligations for items purchased from suppliers, for example, and money owed to creditors.",
   },
@@ -478,7 +478,7 @@ export const mockPieData = [
 export const mockLineData = [
   {
     id: "japan",
-    color: tokens("dark").greenAccent[500],
+    color: tokens("dark").secondary[500],
     data: [
       {
         x: "plane",
@@ -532,7 +532,7 @@ export const mockLineData = [
   },
   {
     id: "france",
-    color: tokens("dark").blueAccent[300],
+    color: tokens("dark").calm[300],
     data: [
       {
         x: "plane",
@@ -586,7 +586,7 @@ export const mockLineData = [
   },
   {
     id: "us",
-    color: tokens("dark").redAccent[200],
+    color: tokens("dark").danger[200],
     data: [
       {
         x: "plane",

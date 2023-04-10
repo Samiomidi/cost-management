@@ -34,6 +34,8 @@ const Dashboard = ({ isLoading }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
+
+  console.log(theme);
   const MenuProps = {
     PaperProps: {
       style: {
@@ -80,7 +82,7 @@ const Dashboard = ({ isLoading }) => {
           <Tooltip title="Project Balance" placement="right-start" arrow>
             <Typography
               variant={isMobile ? "h3" : "h1"}
-              color={colors.greenAccent[600]}
+              color={colors.secondary[600]}
               fontWeight="bold"
               sx={{ mb: "5px" }}
             >
@@ -147,7 +149,7 @@ const Dashboard = ({ isLoading }) => {
                   <Typography
                     variant="h3"
                     fontWeight="bold"
-                    color={colors.greenAccent[500]}
+                    color={colors.secondary[500]}
                   >
                     $59,342.32
                   </Typography>
@@ -155,7 +157,7 @@ const Dashboard = ({ isLoading }) => {
                 <Box>
                   <IconButton>
                     <DownloadOutlinedIcon
-                      sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                      sx={{ fontSize: "26px", color: colors.secondary[500] }}
                     />
                   </IconButton>
                 </Box>
@@ -205,7 +207,7 @@ const Dashboard = ({ isLoading }) => {
               >
                 <Box>
                   <Typography
-                    color={colors.greenAccent[500]}
+                    color={colors.secondary[500]}
                     variant="h5"
                     fontWeight="600"
                   >
@@ -219,8 +221,8 @@ const Dashboard = ({ isLoading }) => {
                 <Box
                   backgroundColor={
                     transaction.cost >= 0
-                      ? colors.greenAccent[500]
-                      : colors.redAccent[500]
+                      ? colors.secondary[500]
+                      : colors.danger[500]
                   }
                   p="5px 10px"
                   borderRadius="4px"
@@ -250,7 +252,7 @@ const Dashboard = ({ isLoading }) => {
               <ProgressCircle size="125" />
               <Typography
                 variant="h5"
-                color={colors.greenAccent[500]}
+                color={colors.secondary[500]}
                 sx={{ mt: "15px" }}
               >
                 $48,352 revenue generated

@@ -69,7 +69,7 @@ function ExpenseItem(props) {
             <EditOutlinedIcon />
           </IconButton>
           <IconButton
-            sx={{ color: `${colors.redAccent[500]}` }}
+            sx={{ color: `${colors.danger[500]}` }}
             aria-label="delete item"
             component="label"
           >
