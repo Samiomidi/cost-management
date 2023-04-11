@@ -88,16 +88,8 @@ function SideMenu() {
           defaultCollapsed={isCollapsed}
           backgroundColor={`${colors.primary[400]} !important`}
           width="250px"
-          collapsedWidth="70px"
+          collapsedWidth="80px"
           transitionDuration={200}
-          rootStyles={{
-            [`.${sidebarClasses.backdrop}`]: {
-              "&:hover": () => setIsCollapsed(false),
-            },
-          }}
-          style={{
-            border: "none !important",
-          }}
         >
           <Menu
             rootStyles={{
@@ -289,31 +281,43 @@ function SideMenu() {
           </Menu>
         </Sidebar>
       )}
+
       {!isCollapsed ? (
-        <MoreVertIcon
+        <IconButton
           sx={{
+            backgroundColor: colors.primary[400],
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
             position: "absolute",
             top: "25px",
-            left: "250px",
+            left: "260px",
             cursor: "pointer",
-            zIndex: 100000,
-          }}
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        />
-      ) : (
-        <WidgetsIcon
-          sx={{
-            position: "absolute",
-            top: "25px",
-            left: "70px",
-            cursor: "pointer",
-            zIndex: 100000,
             "&:hover": {
-              color: "#6870fa",
+              backgroundColor: "#6870fa",
             },
           }}
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        />
+        >
+          <MoreVertIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+        </IconButton>
+      ) : (
+        <IconButton
+          sx={{
+            backgroundColor: colors.primary[400],
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            position: "absolute",
+            top: "25px",
+            left: "90px",
+            cursor: "pointer",
+            "&:hover": {
+              backgroundColor: "#6870fa",
+            },
+          }}
+        >
+          <WidgetsIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+        </IconButton>
       )}
     </Fragment>
   );
