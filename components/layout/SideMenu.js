@@ -14,6 +14,8 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -79,37 +81,6 @@ function SideMenu() {
     setIsShowSidebar(!isMobile);
   }, [isMobile]);
 
-  const arrowToggleSidebar = () => {
-    if (isShowSidebar) {
-      return (
-        <MenuOpenOutlinedIcon
-          sx={{
-            position: "absolute",
-            top: "25px",
-            left: "70px",
-            cursor: "pointer",
-          }}
-          onClick={() => setIsShowSidebar(!isShowSidebar)}
-        />
-      );
-    } else {
-      return (
-        <Box margin="0px 5px" position="relative">
-          <MenuOutlinedIcon
-            sx={{
-              position: "absolute",
-              top: "25px",
-              cursor: "pointer",
-              "&:hover": {
-                color: "#6870fa",
-              },
-            }}
-            onClick={() => setIsShowSidebar(!isShowSidebar)}
-          />
-        </Box>
-      );
-    }
-  };
   return (
     <Fragment>
       {isShowSidebar && (
@@ -118,14 +89,17 @@ function SideMenu() {
           backgroundColor={`${colors.primary[400]} !important`}
           width="250px"
           collapsedWidth="70px"
-          transitionDuration={700}
+          transitionDuration={200}
+          rootStyles={{
+            [`.${sidebarClasses.backdrop}`]: {
+              "&:hover": () => setIsCollapsed(false),
+            },
+          }}
           style={{
             border: "none !important",
-            // height: "100vh",
           }}
         >
           <Menu
-            iconShape="square"
             rootStyles={{
               [`.${menuClasses.button}`]: {
                 "&:hover": {
@@ -146,14 +120,7 @@ function SideMenu() {
             }}
           >
             {/* LOGO AND MENU ICON */}
-            <MenuItem
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-              style={{
-                margin: "10px 0 20px 0",
-                color: colors.gray[100],
-              }}
-            >
+            <MenuItem>
               {!isCollapsed && (
                 <Box
                   display="flex"
@@ -164,9 +131,6 @@ function SideMenu() {
                   <Typography variant="h3" color={colors.gray[100]}>
                     ADMIN
                   </Typography>
-                  <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                    <MenuOutlinedIcon />
-                  </IconButton>
                 </Box>
               )}
             </MenuItem>
@@ -325,7 +289,32 @@ function SideMenu() {
           </Menu>
         </Sidebar>
       )}
-      {isCollapsed && arrowToggleSidebar()}
+      {!isCollapsed ? (
+        <MoreVertIcon
+          sx={{
+            position: "absolute",
+            top: "25px",
+            left: "250px",
+            cursor: "pointer",
+            zIndex: 100000,
+          }}
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        />
+      ) : (
+        <WidgetsIcon
+          sx={{
+            position: "absolute",
+            top: "25px",
+            left: "70px",
+            cursor: "pointer",
+            zIndex: 100000,
+            "&:hover": {
+              color: "#6870fa",
+            },
+          }}
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        />
+      )}
     </Fragment>
   );
 }
