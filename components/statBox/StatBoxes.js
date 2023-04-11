@@ -7,7 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 function StatBoxes({ data }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:1080px)");
 
   return data.map((stat) => {
     return (
@@ -17,7 +17,7 @@ function StatBoxes({ data }) {
         subtitle={stat.subtitle}
         progress={stat.progress}
         change={stat.change}
-        icon={isMobile ? stat.icon("18px") : stat.icon("40px")}
+        icon={isMobile ? stat.icon("18px") : stat.icon("35px")}
         desc={stat.desc}
         iconBg={stat.iconBg}
         iconShadow={stat.iconShadow}

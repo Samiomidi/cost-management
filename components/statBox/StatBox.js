@@ -16,7 +16,7 @@ const StatBox = ({
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:1080px)");
 
   return (
     <Box
@@ -32,8 +32,8 @@ const StatBox = ({
     >
       <Box
         position="absolute"
-        width={isMobile ? "35px" : "75px"}
-        height={isMobile ? "35px" : "75px"}
+        width={isMobile ? "35px" : "60px"}
+        height={isMobile ? "35px" : "60px"}
         boxShadow={iconShadow}
         borderRadius="5px"
         left="10px"
