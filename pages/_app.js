@@ -35,7 +35,10 @@ function App({ Component, pageProps }) {
           <CssBaseline />
           <div className="app">
             <SideMenu menuOnClick={menuOnClick} />
-            <main className="content">
+            <main
+              className="content"
+              onClick={menuOnClick ? () => setMenuOnClick(false) : null}
+            >
               <Topbar menuOnClick={() => setMenuOnClick(!menuOnClick)} />
               <Component {...pageProps} isLoading={isLoading} />
             </main>

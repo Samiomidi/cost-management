@@ -94,6 +94,11 @@ function SideMenu({ menuOnClick }) {
           rootStyles={{
             position: isCollapsed ? null : "fixed",
             zIndex: 1000,
+            overflowY: "visible",
+            right: "auto",
+            left: 0,
+            height: "100vh",
+            display: "block",
           }}
           defaultCollapsed={isCollapsed}
           backgroundColor={`${colors.primary[400]} !important`}
