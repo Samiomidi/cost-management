@@ -46,7 +46,7 @@ function Topbar({ menuOnClick }) {
             setShowSearchInput(
               showSearchInput.width === "0px"
                 ? {
-                    width: "200px",
+                    width: isMobile ? "25vw" : "200px",
                     visibility: "visible",
                     backgroundColor: colors.primary[400],
                   }
