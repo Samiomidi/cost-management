@@ -100,6 +100,7 @@ function SideMenu({ menuOnClick }) {
           left: 0,
           height: "100vh",
           display: "block",
+          border: "none",
         }}
         defaultCollapsed={isCollapsed}
         backgroundColor={`${colors.primary[400]} !important`}
