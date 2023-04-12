@@ -2,10 +2,11 @@ import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../styles/theme";
 import { mockBarData as data } from "../data/mockData";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const isMobile = useMediaQuery("(max-width:1080px)");
 
   return (
     <ResponsiveBar
@@ -41,7 +42,11 @@ const BarChart = ({ isDashboard = false }) => {
       }}
       keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
       indexBy="country"
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      margin={
+        isMobile
+          ? { top: 20, right: 20, bottom: 80, left: 60 }
+          : { top: 50, right: 130, bottom: 50, left: 60 }
+      }
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
@@ -98,17 +103,17 @@ const BarChart = ({ isDashboard = false }) => {
       legends={[
         {
           dataFrom: "keys",
-          anchor: "bottom-right",
-          direction: "column",
+          anchor: isMobile ? "bottom" : "bottom-right",
+          direction: isMobile ? "row" : "column",
           justify: false,
-          translateX: 120,
-          translateY: 0,
+          translateX: isMobile ? -25 : 120,
+          translateY: isMobile ? 70 : 0,
           itemsSpacing: 2,
-          itemWidth: 100,
+          itemWidth: isMobile ? 60 : 100,
           itemHeight: 20,
           itemDirection: "left-to-right",
           itemOpacity: 0.85,
-          symbolSize: 20,
+          symbolSize: isMobile ? 10 : 20,
           effects: [
             {
               on: "hover",

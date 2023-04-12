@@ -2,10 +2,12 @@ import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../styles/theme";
 import { useTheme } from "@mui/material";
 import { mockPieData as data } from "../data/mockData";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const PieChart = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const isMobile = useMediaQuery("(max-width:1080px)");
   return (
     <ResponsivePie
       data={data}
@@ -37,7 +39,11 @@ const PieChart = () => {
           },
         },
       }}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      margin={
+        isMobile
+          ? { top: 20, right: 50, bottom: 50, left: 50 }
+          : { top: 20, right: 0, bottom: 20, left: 0 }
+      }
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
@@ -50,11 +56,11 @@ const PieChart = () => {
       arcLinkLabelsTextColor={colors.gray[100]}
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: "color" }}
-      enableArcLabels={false}
+      enableArcLabels={true}
       arcLabelsRadiusOffset={0.4}
       arcLabelsSkipAngle={7}
       arcLabelsTextColor={{
-        from: "color",
+        from: "#000",
         modifiers: [["darker", 2]],
       }}
       defs={[
@@ -79,18 +85,18 @@ const PieChart = () => {
       ]}
       legends={[
         {
-          anchor: "bottom",
-          direction: "row",
+          anchor: isMobile ? "bottom" : "right",
+          direction: isMobile ? "row" : "column",
           justify: false,
-          translateX: 0,
-          translateY: 56,
+          translateX: isMobile ? 0 : -50,
+          translateY: isMobile ? 0 : 0,
           itemsSpacing: 0,
-          itemWidth: 100,
-          itemHeight: 18,
+          itemWidth: isMobile ? 70 : 100,
+          itemHeight: isMobile ? -70 : 30,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
           itemOpacity: 1,
-          symbolSize: 18,
+          symbolSize: isMobile ? 10 : 18,
           symbolShape: "circle",
           effects: [
             {

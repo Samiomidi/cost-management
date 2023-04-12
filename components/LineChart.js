@@ -2,11 +2,12 @@ import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../styles/theme";
 import { mockLineData as data } from "../data/mockData";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const isMobile = useMediaQuery("(max-width:1080px)");
   return (
     <ResponsiveLine
       data={data}
@@ -44,7 +45,11 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         },
       }}
       colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={
+        isMobile
+          ? { top: 50, right: 20, bottom: 80, left: 35 }
+          : { top: 30, right: 110, bottom: 80, left: 60 }
+      }
       xScale={{ type: "point" }}
       yScale={{
         type: "linear",
@@ -61,9 +66,9 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         orient: "bottom",
         tickSize: 0,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: isMobile ? -45 : 0,
         legend: isDashboard ? undefined : "transportation", // added
-        legendOffset: 36,
+        legendOffset: 50,
         legendPosition: "middle",
       }}
       axisLeft={{
@@ -71,10 +76,10 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         tickValues: 5, // added
         tickSize: 3,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: isMobile ? 45 : 0,
         legend: isDashboard ? undefined : "count", // added
-        legendOffset: -40,
-        legendPosition: "middle",
+        legendOffset: isMobile ? -20 : -50,
+        legendPosition: isMobile ? 50 : "middle",
       }}
       enableGridX={false}
       enableGridY={false}
@@ -86,11 +91,11 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
       useMesh={true}
       legends={[
         {
-          anchor: "bottom-right",
-          direction: "column",
+          anchor: isMobile ? "top" : "bottom-right",
+          direction: isMobile ? "row" : "column",
           justify: false,
-          translateX: 100,
-          translateY: 0,
+          translateX: isMobile ? 0 : 100,
+          translateY: isMobile ? -50 : 0,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 80,
