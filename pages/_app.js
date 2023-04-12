@@ -24,7 +24,8 @@ function App({ Component, pageProps }) {
       setIsLoading(false);
     });
   });
-
+  const [menuOnClick, setMenuOnClick] = useState(false);
+  console.log(menuOnClick);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -33,9 +34,9 @@ function App({ Component, pageProps }) {
           {/* {isLoading && <Loading />} */}
           <CssBaseline />
           <div className="app">
-            <SideMenu />
+            <SideMenu menuOnClick={menuOnClick} />
             <main className="content">
-              <Topbar />
+              <Topbar menuOnClick={() => setMenuOnClick(!menuOnClick)} />
               <Component {...pageProps} isLoading={isLoading} />
             </main>
           </div>

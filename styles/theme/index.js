@@ -161,6 +161,7 @@ export const themeSettings = (mode) => {
             },
           }),
     },
+
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
       fontSize: 12,
@@ -190,6 +191,14 @@ export const themeSettings = (mode) => {
         fontSize: 14,
       },
     },
+    // breakpoints: {
+    //   values: {
+    //     mobile: 0,
+    //     tablet: 640,
+    //     laptop: 1024,
+    //     desktop: 1200,
+    //   },
+    // },
   };
 };
 
