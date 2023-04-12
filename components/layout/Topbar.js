@@ -21,7 +21,12 @@ function Topbar({ menuOnClick }) {
     backgroundColor: "",
   });
   return (
-    <Box display="flex" justifyContent="flex-end" p={2}>
+    <Box
+      display="flex"
+      justifyContent="flex-end"
+      p={2}
+      sx={{ position: "sticky", top: "0px" }}
+    >
       {/* Search Bar */}
       <Box
         display="flex"
