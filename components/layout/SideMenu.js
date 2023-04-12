@@ -68,7 +68,7 @@ const Item = ({
   );
 };
 
-function SideMenu() {
+function SideMenu({ menuOnClick }) {
   const isMobile = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -77,14 +77,24 @@ function SideMenu() {
   const [isShowSidebar, setIsShowSidebar] = useState(true);
 
   useEffect(() => {
-    setIsCollapsed(isMobile);
+    // setIsCollapsed(isMobile);
     setIsShowSidebar(!isMobile);
-  }, [isMobile]);
+
+    if (menuOnClick) {
+      setIsShowSidebar(true);
+    } else {
+      setIsShowSidebar(!isMobile);
+    }
+  }, [isMobile, menuOnClick]);
 
   return (
     <Fragment>
       {isShowSidebar && (
         <Sidebar
+          rootStyles={{
+            position: isCollapsed ? null : "fixed",
+            zIndex: 1000,
+          }}
           defaultCollapsed={isCollapsed}
           backgroundColor={`${colors.primary[400]} !important`}
           width="250px"
@@ -282,43 +292,47 @@ function SideMenu() {
         </Sidebar>
       )}
 
-      {!isCollapsed ? (
-        <IconButton
-          sx={{
-            backgroundColor: colors.primary[400],
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            position: "absolute",
-            top: "25px",
-            left: "260px",
-            cursor: "pointer",
-            "&:hover": {
-              backgroundColor: "#6870fa",
-            },
-          }}
-        >
-          <MoreVertIcon onClick={() => setIsCollapsed(!isCollapsed)} />
-        </IconButton>
-      ) : (
-        <IconButton
-          sx={{
-            backgroundColor: colors.primary[400],
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            position: "absolute",
-            top: "25px",
-            left: "90px",
-            cursor: "pointer",
-            "&:hover": {
-              backgroundColor: "#6870fa",
-            },
-          }}
-        >
-          <WidgetsIcon onClick={() => setIsCollapsed(!isCollapsed)} />
-        </IconButton>
-      )}
+      {!isCollapsed
+        ? !isMobile && (
+            <IconButton
+              sx={{
+                backgroundColor: colors.primary[400],
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                position: "absolute",
+                top: "25px",
+                left: "260px",
+                cursor: "pointer",
+                "&:hover": {
+                  backgroundColor: "#6870fa",
+                },
+              }}
+            >
+              <MoreVertIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+            </IconButton>
+          )
+        : !isMobile && (
+            <IconButton
+              sx={{
+                backgroundColor: colors.primary[400],
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                position: "absolute",
+                top: "25px",
+                left: "90px",
+                cursor: "pointer",
+                "&:hover": {
+                  backgroundColor: "#6870fa",
+                },
+              }}
+            >
+              {!isMobile && (
+                <WidgetsIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+              )}
+            </IconButton>
+          )}
     </Fragment>
   );
 }
