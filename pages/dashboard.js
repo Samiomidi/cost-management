@@ -31,11 +31,10 @@ const Dashboard = ({ isLoading }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const router = useRouter();
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:1080px)");
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
 
-  console.log(theme);
   const MenuProps = {
     PaperProps: {
       style: {
