@@ -91,9 +91,9 @@ function SideMenu({ menuOnClick }) {
     <Fragment>
       <Sidebar
         rootStyles={{
-          visibility: isShowSidebar ? "visible" : "hidden",
+          minWidth: isShowSidebar ? "250px" : "0",
           position: isMobile ? "fixed" : "relative",
-          transition: "0.5s all ease-in",
+          transition: "0.2s all ease-in",
           zIndex: 1000,
           overflowY: "visible",
           right: "auto",
@@ -103,9 +103,8 @@ function SideMenu({ menuOnClick }) {
         }}
         defaultCollapsed={isCollapsed}
         backgroundColor={`${colors.primary[400]} !important`}
-        width="250px"
+        width={isShowSidebar ? "250px" : "0"}
         collapsedWidth="80px"
-        transitionDuration={200}
       >
         <Menu
           rootStyles={{
