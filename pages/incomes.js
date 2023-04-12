@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
-import { Box, Button, MenuItem } from "@mui/material";
+import { Box, Button, MenuItem, Typography } from "@mui/material";
 import { data, states } from "../data/makeData";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
 import { Delete, Edit, AccountCircle } from "@mui/icons-material";
 import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
 import { useRouter } from "next/router";
+import useMediaQuery from "@mui/material/useMediaQuery";
 const Incomes = ({ isLoading }) => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
-
+  const isMobile = useMediaQuery("(max-width:1080px)");
   useEffect(() => {
     setTableData(() => data);
   }, []);
@@ -229,8 +230,10 @@ const Incomes = ({ isLoading }) => {
                   color="secondary"
                   onClick={() => setCreateModalOpen(true)}
                   variant="contained"
+                  size="small"
+                  sx={{ fontSize: "10px", fontWeight: "bold" }}
                 >
-                  Create New Account
+                  ADD
                 </Button>
                 <Button
                   color="error"
@@ -240,6 +243,8 @@ const Incomes = ({ isLoading }) => {
                   }
                   onClick={handleMultiDelete}
                   variant="contained"
+                  size={isMobile ? "small" : "large"}
+                  sx={{ fontSize: "10px", fontWeight: "bold" }}
                 >
                   Remove
                 </Button>
