@@ -93,7 +93,7 @@ function SideMenu({ menuOnClick }) {
         rootStyles={{
           minWidth: isShowSidebar ? "250px" : "0",
           position: isMobile ? "fixed" : "relative",
-          transition: "0.2s all ease-in",
+          transition: "0.3s all ease-out",
           zIndex: 1000,
           overflowY: "visible",
           right: "auto",
