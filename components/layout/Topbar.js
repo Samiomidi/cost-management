@@ -7,12 +7,14 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-
-function Topbar() {
+import useMediaQuery from "@mui/material/useMediaQuery";
+function Topbar({ menuOnClick }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const isMobile = useMediaQuery("(max-width:1080px)");
   const [showSearchInput, setShowSearchInput] = useState({
     width: "0px",
     visibility: "hidden",
@@ -75,6 +77,11 @@ function Topbar() {
         <IconButton>
           <PersonOutlinedIcon />
         </IconButton>
+        {isMobile && (
+          <IconButton onClick={menuOnClick}>
+            <MenuOutlinedIcon />
+          </IconButton>
+        )}
       </Box>
     </Box>
   );
