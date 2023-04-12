@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
 import { ColorModeContext, setMode } from "../styles/theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Backdrop, CssBaseline, ThemeProvider } from "@mui/material";
 import Topbar from "../components/layout/Topbar";
 import SideMenu from "../components/layout/SideMenu";
 import Loading from "../components/ui/Loading";
@@ -37,6 +37,10 @@ function App({ Component, pageProps }) {
             <SideMenu menuOnClick={menuOnClick} />
             <main
               className="content"
+              style={{
+                backgroundColor: menuOnClick ? "#ffffff29" : "",
+                backdropFilter: menuOnClick ? "blur(4px)" : "",
+              }}
               onClick={menuOnClick ? () => setMenuOnClick(false) : null}
             >
               <Topbar menuOnClick={() => setMenuOnClick(!menuOnClick)} />
