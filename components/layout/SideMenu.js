@@ -81,6 +81,7 @@ function SideMenu({ menuOnClick }) {
     setIsShowSidebar(!isMobile);
 
     if (menuOnClick) {
+      setIsCollapsed(false);
       setIsShowSidebar(true);
     } else {
       setIsShowSidebar(!isMobile);
@@ -105,7 +106,7 @@ function SideMenu({ menuOnClick }) {
         defaultCollapsed={isCollapsed}
         backgroundColor={`${colors.primary[400]} !important`}
         width={isShowSidebar ? "250px" : "0"}
-        collapsedWidth="80px"
+        collapsedWidth={isShowSidebar ? "80px" : "0px"}
       >
         <Menu
           rootStyles={{
