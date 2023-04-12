@@ -7,7 +7,6 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
@@ -20,10 +19,7 @@ import { sidebarClasses, menuClasses } from "react-pro-sidebar";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import TrendingDownOutlinedIcon from "@mui/icons-material/TrendingDownOutlined";
-import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 const Item = ({
   title,
@@ -95,7 +91,7 @@ function SideMenu({ menuOnClick }) {
           minWidth: isShowSidebar ? "250px" : "0",
           position: isMobile ? "fixed" : "relative",
           transition: "0.3s all ease-out",
-          zIndex: 10000,
+          zIndex: 100,
           overflowY: "visible",
           right: "auto",
           left: 0,

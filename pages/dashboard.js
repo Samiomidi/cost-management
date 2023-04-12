@@ -1,12 +1,5 @@
-import { useState, useEffect } from "react";
-import {
-  Box,
-  Button,
-  IconButton,
-  Typography,
-  useTheme,
-  Tooltip,
-} from "@mui/material";
+import { useState } from "react";
+import { Box, IconButton, Typography, useTheme, Tooltip } from "@mui/material";
 import { tokens } from "../styles/theme";
 import { mockTransactions, mockDataStatBox } from "../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
@@ -39,7 +32,7 @@ const Dashboard = ({ isLoading }) => {
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
+        width: isMobile ? 50 : 250,
       },
     },
   };
@@ -90,7 +83,7 @@ const Dashboard = ({ isLoading }) => {
               2520 $
             </Typography>
           </Tooltip>
-          <FormControl sx={{ m: 1, width: 300, flex: 1 }}>
+          <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel id="demo-multiple-checkbox-label">Project</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"
