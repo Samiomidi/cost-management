@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
-import { Box, Button, MenuItem, Typography } from "@mui/material";
+import { Box, Button, MenuItem, Typography, useTheme } from "@mui/material";
 import { data, states } from "../data/makeData";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
@@ -8,11 +8,14 @@ import { Delete, Edit, AccountCircle } from "@mui/icons-material";
 import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { tokens } from "../styles/theme";
 const Incomes = ({ isLoading }) => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
   const isMobile = useMediaQuery("(max-width:1080px)");
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   useEffect(() => {
     setTableData(() => data);
   }, []);
