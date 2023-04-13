@@ -91,7 +91,7 @@ function SideMenu({ menuOnClick }) {
           minWidth: isShowSidebar ? "250px" : "0",
           position: isMobile ? "fixed" : "relative",
           transition: "0.3s all ease-out",
-          zIndex: 100,
+          zIndex: 10000,
           overflowY: "visible",
           right: "auto",
           left: 0,
