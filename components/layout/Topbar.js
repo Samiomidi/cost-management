@@ -109,7 +109,6 @@ function Topbar({ menuOnClick }) {
             style={{
               display: "flex",
               alignItems: "center",
-              color: colors.secondary[500],
             }}
           >
             Download Icon (
@@ -120,9 +119,7 @@ function Topbar({ menuOnClick }) {
               <DownloadForOfflineIcon />
             </IconButton>
             )
-          </strong>{" "}
-          button. This button will always be accessible by refreshing the main
-          page
+          </strong>
         </Modal>
       )}
       {/* Icons */}
