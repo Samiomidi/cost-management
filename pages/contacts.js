@@ -76,7 +76,7 @@ const Contacts = () => {
             color: colors.secondary[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.calm[700],
+            backgroundColor: colors.calm[800],
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -84,7 +84,7 @@ const Contacts = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.calm[700],
+            backgroundColor: colors.calm[800],
           },
           "& .MuiCheckbox-root": {
             color: `${colors.secondary[200]} !important`,

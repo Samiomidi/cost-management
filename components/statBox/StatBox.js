@@ -55,7 +55,7 @@ const StatBox = ({
           variant={isMobile ? "h6" : "h5"}
           fontWeight="bold"
           sx={{
-            color: change >= 0 ? colors.secondary[600] : colors.danger[600],
+            color: change >= 0 ? colors.secondary[500] : colors.danger[600],
           }}
         >
           {`${change} %`}

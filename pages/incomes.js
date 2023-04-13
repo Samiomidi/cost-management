@@ -148,7 +148,22 @@ const Incomes = ({ isLoading }) => {
   return (
     <Box m="20px" overflow="hidden">
       <Header title="INCOMES" subtitle="List of Incomes" />
-      <Box m="40px 0 0 0">
+      <Box
+        m="40px 0 0 0"
+        sx={{
+          "& .MuiToolbar-root": {
+            backgroundColor: colors.primary[700],
+            borderBottom: "none",
+          },
+          "& .MuiTableHead-root .MuiTableRow-root": {
+            backgroundColor: colors.calm[800],
+            borderBottom: "none",
+          },
+          "& .MuiCheckbox-root": {
+            color: `${colors.secondary[200]} !important`,
+          },
+        }}
+      >
         <MaterialReactTable
           initialState={{ isLoading: false }}
           displayColumnDefOptions={{

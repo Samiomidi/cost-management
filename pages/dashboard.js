@@ -7,7 +7,6 @@ import Header from "../components/Header";
 import LineChart from "../components/LineChart";
 import GeographyChart from "../components/GeographyChart";
 import BarChart from "../components/BarChart";
-import CustomIconButton from "../components/ui/CustomIconButton";
 import ProgressCircle from "../components/ProgressCircle";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -55,11 +54,6 @@ const Dashboard = ({ isLoading }) => {
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-
-        <CustomIconButton
-          icon={<DownloadOutlinedIcon />}
-          title={"Download Reports"}
-        />
       </Box>
       <Box display="flex" flexDirection="column" gap="20px">
         <Box
@@ -76,7 +70,7 @@ const Dashboard = ({ isLoading }) => {
           <Tooltip title="Project Balance" placement="right-start" arrow>
             <Typography
               variant={isMobile ? "h2" : "h1"}
-              color={colors.secondary[600]}
+              color={colors.secondary[500]}
               fontWeight="bold"
               sx={{ mb: "5px" }}
             >
@@ -222,6 +216,7 @@ const Dashboard = ({ isLoading }) => {
                   }
                   p="5px 10px"
                   borderRadius="4px"
+                  color={colors.gray[900]}
                 >
                   ${transaction.cost}
                 </Box>

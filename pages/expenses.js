@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
-import { Box, Button, MenuItem, Typography } from "@mui/material";
+import { Box, Button, MenuItem, Typography, useTheme } from "@mui/material";
 import { data, states } from "../data/makeData";
+import { tokens } from "../styles/theme";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
 import { Delete, Edit, AccountCircle } from "@mui/icons-material";
@@ -13,6 +14,8 @@ const Expenses = ({ isLoading }) => {
   const [tableData, setTableData] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
   const isMobile = useMediaQuery("(max-width:1080px)");
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   useEffect(() => {
     setTableData(() => data);
   }, []);
@@ -148,7 +151,22 @@ const Expenses = ({ isLoading }) => {
   return (
     <Box m="20px" overflow="hidden">
       <Header title="EXPENSES" subtitle="List of Expenses" />
-      <Box m="40px 0 0 0">
+      <Box
+        m="40px 0 0 0"
+        sx={{
+          "& .MuiToolbar-root": {
+            backgroundColor: colors.primary[700],
+            borderBottom: "none",
+          },
+          "& .MuiTableHead-root .MuiTableRow-root": {
+            backgroundColor: colors.calm[800],
+            borderBottom: "none",
+          },
+          "& .MuiCheckbox-root": {
+            color: `${colors.secondary[200]} !important`,
+          },
+        }}
+      >
         <MaterialReactTable
           initialState={{ isLoading: false }}
           displayColumnDefOptions={{

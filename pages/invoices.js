@@ -61,7 +61,7 @@ const Invoices = () => {
             color: colors.secondary[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.calm[700],
+            backgroundColor: colors.calm[800],
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -69,7 +69,7 @@ const Invoices = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.calm[700],
+            backgroundColor: colors.calm[800],
           },
           "& .MuiCheckbox-root": {
             color: `${colors.secondary[200]} !important`,
