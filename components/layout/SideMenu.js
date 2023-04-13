@@ -92,10 +92,9 @@ function SideMenu({ menuOnClick }) {
           position: isMobile ? "fixed" : "relative",
           transition: "0.3s all ease-out",
           zIndex: 10000,
-          overflowY: "visible",
           right: "auto",
           left: 0,
-          height: "100vh",
+          height: "100%",
           display: "block",
           border: "none",
         }}
@@ -110,7 +109,7 @@ function SideMenu({ menuOnClick }) {
               "&:hover": {
                 color:
                   theme.palette.mode === "dark"
-                    ? "#6870fa !important"
+                    ? `${colors.secondary[500]} !important`
                     : `${colors.calm[400]} !important`,
                 backgroundColor: "transparent !important",
               },
@@ -118,7 +117,7 @@ function SideMenu({ menuOnClick }) {
             [`.${menuClasses.active}`]: {
               color:
                 theme.palette.mode === "dark"
-                  ? "#6870fa !important"
+                  ? `${colors.secondary[500]} !important`
                   : `${colors.calm[400]} !important`,
               backgroundColor: "transparent !important",
             },
@@ -160,15 +159,8 @@ function SideMenu({ menuOnClick }) {
                 >
                   Sami Omidi
                 </Typography>
-                <Typography
-                  variant="h5"
-                  color={
-                    theme.palette.mode === "dark"
-                      ? colors.secondary[500]
-                      : "#6870fa"
-                  }
-                >
-                  VP Fancy Admin
+                <Typography variant="h5" color={colors.secondary[500]}>
+                  SYS Admin
                 </Typography>
               </Box>
             </Box>
@@ -325,7 +317,7 @@ function SideMenu({ menuOnClick }) {
                 left: "90px",
                 cursor: "pointer",
                 "&:hover": {
-                  backgroundColor: "#6870fa",
+                  backgroundColor: colors.secondary[500],
                 },
               }}
             >
