@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { tokens } from "../../styles/theme";
 //example of creating a mui dialog modal for creating new rows
-const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
+const CreateNewItemModal = ({ open, columns, onClose, onSubmit }) => {
   const [values, setValues] = useState(() =>
     columns.reduce((acc, column) => {
       acc[column.accessorKey ?? ""] = "";
@@ -28,7 +28,7 @@ const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle textAlign="center">Create New Account</DialogTitle>
+      <DialogTitle textAlign="center">New Item</DialogTitle>
       <DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
           <Stack
@@ -56,10 +56,10 @@ const CreateNewAccountModal = ({ open, columns, onClose, onSubmit }) => {
           Cancel
         </Button>
         <Button color="secondary" onClick={handleSubmit} variant="contained">
-          Create New Account
+          Create
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
-export default CreateNewAccountModal;
+export default CreateNewItemModal;

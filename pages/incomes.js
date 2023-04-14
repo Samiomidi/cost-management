@@ -5,7 +5,7 @@ import { data, states } from "../data/makeData";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
 import { Delete, Edit, AccountCircle } from "@mui/icons-material";
-import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
+import CreateNewItemModal from "../components/modals/CreateNewItemModal";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { tokens } from "../styles/theme";
@@ -271,7 +271,7 @@ const Incomes = ({ isLoading }) => {
           }}
         />
       </Box>
-      <CreateNewAccountModal
+      <CreateNewItemModal
         columns={columns}
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}

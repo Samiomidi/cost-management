@@ -6,7 +6,7 @@ import { tokens } from "../styles/theme";
 import Header from "../components/Header";
 import ActionMenu from "../components/dataGridTable/ActionMenu";
 import { Delete, Edit, AccountCircle } from "@mui/icons-material";
-import CreateNewAccountModal from "../components/modals/CreateNewAccountModal";
+import CreateNewItemModal from "../components/modals/CreateNewItemModal";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
 const Expenses = ({ isLoading }) => {
@@ -271,7 +271,7 @@ const Expenses = ({ isLoading }) => {
           }}
         />
       </Box>
-      <CreateNewAccountModal
+      <CreateNewItemModal
         columns={columns}
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
