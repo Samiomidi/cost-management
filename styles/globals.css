@@ -22,7 +22,6 @@ body,
 #root,
 .app,
 .content {
-  height: 100%;
   width: 100%;
   overflow-x: hidden;
   font-family: "Source Sans Pro", sans-serif;
@@ -33,6 +32,7 @@ body,
 }
 .content {
   margin: 0px 5px;
+  min-height: 100vh;
 }
 ::-webkit-scrollbar {
   width: 10px;
