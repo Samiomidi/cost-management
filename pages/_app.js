@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import "../styles/globals.css";
 import { ColorModeContext, setMode } from "../styles/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import styled from "styled-components";
 import Topbar from "../components/layout/Topbar";
 import SideMenu from "../components/layout/SideMenu";
 import { ProSidebarProvider } from "react-pro-sidebar";
@@ -27,14 +28,14 @@ function App({ Component, pageProps }) {
           <CssBaseline />
           <div className="app">
             <SideMenu menuOnClick={menuOnClick} />
-            <main
-              className="content"
-              style={{
-                backgroundColor: menuOnClick ? "#ffffff29" : "",
-                backdropFilter: menuOnClick ? "blur(4px)" : "",
-              }}
-              onClick={menuOnClick ? () => setMenuOnClick(false) : null}
-            >
+            {menuOnClick && (
+              <div
+                onClick={menuOnClick ? () => setMenuOnClick(false) : null}
+                className={"backdrop"}
+              />
+            )}
+
+            <main className="content">
               <Topbar menuOnClick={() => setMenuOnClick(!menuOnClick)} />
               <Component {...pageProps} isLoading={isLoading} />
             </main>
