@@ -1,6 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  menuItemClasses,
+  useTheme,
+} from "@mui/material";
 import { tokens } from "../../styles/theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -45,22 +51,31 @@ const Item = ({
     }
   }, []);
   return (
-    <MenuItem
-      disabled={disabled}
-      prefix={prefix}
-      suffix={suffix}
-      active={selected === title}
-      style={{
-        color: colors.gray[100],
-      }}
-      onClick={() => {
-        router.push(to);
-        setSelected(title);
-      }}
-      icon={icon}
+    <Box
+      width="90%"
+      display="flex"
+      m="0 auto"
+      sx={{ borderRadius: "10px" }}
+      backgroundColor={
+        selected === title && theme.palette.mode === "light"
+          ? `${colors.calm[400]} !important`
+          : null
+      }
     >
-      <Typography>{title}</Typography>
-    </MenuItem>
+      <MenuItem
+        disabled={disabled}
+        prefix={prefix}
+        suffix={suffix}
+        active={selected === title}
+        onClick={() => {
+          router.push(to);
+          setSelected(title);
+        }}
+        icon={icon}
+      >
+        <Typography>{title}</Typography>
+      </MenuItem>
+    </Box>
   );
 };
 
@@ -99,12 +114,26 @@ function SideMenu({ menuOnClick }) {
           border: "none",
         }}
         defaultCollapsed={isCollapsed}
-        backgroundColor={`${colors.primary[400]} !important`}
+        backgroundColor={`${
+          theme.palette.mode === "dark" ? colors.primary[400] : "#060638"
+        }`}
         width={isShowSidebar ? "250px" : "0"}
         collapsedWidth={isShowSidebar ? "80px" : "0px"}
       >
         <Menu
           rootStyles={{
+            [`.${menuClasses.icon}`]: {
+              color:
+                theme.palette.mode === "dark"
+                  ? `${colors.primary[100]} !important`
+                  : `${colors.primary[900]} !important`,
+            },
+            [`.${menuClasses.label}`]: {
+              color:
+                theme.palette.mode === "dark"
+                  ? `${colors.primary[100]} !important`
+                  : `${colors.primary[900]} !important`,
+            },
             [`.${menuClasses.button}`]: {
               "&:hover": {
                 color:
@@ -118,26 +147,11 @@ function SideMenu({ menuOnClick }) {
               color:
                 theme.palette.mode === "dark"
                   ? `${colors.secondary[500]} !important`
-                  : `${colors.calm[400]} !important`,
-              backgroundColor: "transparent !important",
+                  : "",
             },
           }}
         >
           {/* LOGO AND MENU ICON */}
-          <MenuItem>
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="2rem"
-              >
-                <Typography variant="h3" color={colors.gray[100]}>
-                  ADMIN
-                </Typography>
-              </Box>
-            )}
-          </MenuItem>
 
           {!isCollapsed && (
             <Box mb="25px">
@@ -153,13 +167,20 @@ function SideMenu({ menuOnClick }) {
               <Box textAlign="center">
                 <Typography
                   variant="h2"
-                  color={colors.gray[100]}
+                  color={colors.general[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
                   Sami Omidi
                 </Typography>
-                <Typography variant="h5" color={colors.secondary[500]}>
+                <Typography
+                  variant="h5"
+                  color={
+                    theme.palette.mode === "dark"
+                      ? colors.secondary[500]
+                      : colors.calm[400]
+                  }
+                >
                   SYS Admin
                 </Typography>
               </Box>
@@ -177,7 +198,7 @@ function SideMenu({ menuOnClick }) {
 
             <Typography
               variant="h6"
-              color={colors.gray[300]}
+              color={colors.general[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Data
@@ -220,7 +241,7 @@ function SideMenu({ menuOnClick }) {
 
             <Typography
               variant="h6"
-              color={colors.gray[300]}
+              color={colors.general[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Pages
@@ -249,7 +270,7 @@ function SideMenu({ menuOnClick }) {
 
             <Typography
               variant="h6"
-              color={colors.gray[300]}
+              color={colors.general[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Charts

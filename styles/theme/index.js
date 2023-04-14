@@ -5,6 +5,7 @@ export const tokens = (mode) => ({
   ...createTheme(
     mode === "dark"
       ? {
+          general: { 100: "#e0e0e0", 300: "#858585" },
           gray: {
             100: "#e0e0e0",
             200: "#c2c2c2",
@@ -84,6 +85,7 @@ export const tokens = (mode) => ({
           },
         }
       : {
+          general: { 100: "#e0e0e0", 300: "#858585" },
           gray: {
             100: "#141414",
             200: "#292929",
@@ -145,7 +147,7 @@ export const tokens = (mode) => ({
             100: "#151632",
             200: "#2a2d64",
             300: "#3e4396",
-            400: "#535ac8",
+            400: "#0054FF",
             500: "#6870fa",
             600: "#868dfb",
             700: "#a4a9fc",
