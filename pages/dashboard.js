@@ -62,7 +62,7 @@ const Dashboard = ({ isLoading }) => {
           justifyContent="space-between"
           alignItems="center"
           sx={{
-            "& .css-75gcxd-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+            "& .Mui-focused": {
               color: `${colors.primary[100]}`,
             },
           }}
