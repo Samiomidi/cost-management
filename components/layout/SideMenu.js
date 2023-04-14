@@ -115,7 +115,7 @@ function SideMenu({ menuOnClick }) {
         }}
         defaultCollapsed={isCollapsed}
         backgroundColor={`${
-          theme.palette.mode === "dark" ? colors.primary[400] : "#060638"
+          theme.palette.mode === "dark" ? colors.primary[700] : "#060638"
         }`}
         width={isShowSidebar ? "250px" : "0"}
         collapsedWidth={isShowSidebar ? "80px" : "0px"}
