@@ -20,7 +20,7 @@ function Topbar({ menuOnClick }) {
   const [showSearchInput, setShowSearchInput] = useState({
     width: "0px",
     visibility: "hidden",
-    backgroundColor: "",
+    backgroundColor: false,
   });
 
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -59,7 +59,11 @@ function Topbar({ menuOnClick }) {
       <Box
         display="flex"
         borderRadius="3px"
-        backgroundColor={showSearchInput.backgroundColor}
+        sx={{
+          backgroundColor: showSearchInput.backgroundColor
+            ? colors.primary[400]
+            : null,
+        }}
       >
         <InputBase
           sx={{
@@ -68,7 +72,6 @@ function Topbar({ menuOnClick }) {
             width: showSearchInput.width,
             visibility: showSearchInput.visibility,
             transition: "0.3s all ease-in-out",
-            backgroundColor: colors.primary[400],
           }}
           placeholder="Search"
         />
@@ -79,11 +82,11 @@ function Topbar({ menuOnClick }) {
             setShowSearchInput(
               showSearchInput.width === "0px"
                 ? {
-                    width: isMobile ? "25vw" : "200px",
+                    width: isMobile ? "30vw" : "200px",
                     visibility: "visible",
-                    backgroundColor: colors.primary[400],
+                    backgroundColor: true,
                   }
-                : { width: "0px", visibility: "hidden", backgroundColor: "" }
+                : { width: "0px", visibility: "hidden", backgroundColor: false }
             )
           }
         >
