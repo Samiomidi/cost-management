@@ -109,7 +109,7 @@ function SideMenu({ menuOnClick }) {
           zIndex: 10000,
           right: "auto",
           left: 0,
-          height: "100%",
+          // height: "100%",
           display: "block",
           border: "none",
         }}
