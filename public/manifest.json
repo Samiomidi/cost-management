@@ -4,10 +4,15 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-
   "name": "Cost Management",
   "short_name": "CM Dashboard",
   "description": "Beautiful Cost Management Dashboard",
+  "id": "/",
+  "orientation": "any",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay"],
+
   "icons": [
     {
       "src": "/icon-192x192.png",
@@ -28,6 +33,24 @@
       "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screen.png",
+      "sizes": "1617x1012",
+      "type": "image/png"
+    }
+  ],
+  "features": ["Cross Platform", "fast", "simple"],
+  "categories": ["Management"],
+  "shortcuts": [
+    {
+      "name": "Open Dashboard",
+      "short_name": "Dashboard",
+      "description": "Open the dashboard page",
+      "url": "/dashboard",
+      "icons": [{ "src": "/192x192.png", "sizes": "192x192" }]
     }
   ]
 }
