@@ -49,6 +49,7 @@ const Dashboard = ({ isLoading }) => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -61,11 +62,6 @@ const Dashboard = ({ isLoading }) => {
           flexDirection={isMobile ? "column" : "row"}
           justifyContent="space-between"
           alignItems="center"
-          sx={{
-            "& .Mui-focused": {
-              color: `${colors.primary[100]}`,
-            },
-          }}
         >
           <Tooltip title="Project Balance" placement="right-start" arrow>
             <Typography
@@ -77,7 +73,16 @@ const Dashboard = ({ isLoading }) => {
               2520 $
             </Typography>
           </Tooltip>
-          <FormControl sx={{ m: 1, width: 300 }}>
+
+          <FormControl
+            sx={{
+              "& .Mui-focused": {
+                color: `${colors.primary[100]}`,
+              },
+              m: 1,
+              width: 300,
+            }}
+          >
             <InputLabel id="demo-multiple-checkbox-label">Project</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"
