@@ -4,6 +4,7 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+
   "name": "Cost Management",
   "short_name": "CM Dashboard",
   "description": "Beautiful Cost Management Dashboard",
