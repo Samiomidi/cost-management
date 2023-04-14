@@ -27,7 +27,7 @@ body,
   font-family: "Source Sans Pro", sans-serif;
 }
 .app {
-  /* display: flex; */
+  display: flex;
   position: relative;
 }
 .backdrop {
